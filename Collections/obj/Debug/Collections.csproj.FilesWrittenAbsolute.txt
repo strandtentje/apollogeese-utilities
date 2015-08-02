@@ -1,9 +1,0 @@
-/home/rob/sources/apollogeese/Utilities/Collections/obj/Debug/.NETFramework,Version=v4.0.AssemblyAttribute.cs
-/home/rob/sources/apollogeese/Utilities/Collections/bin/Debug/Logging.dll
-/home/rob/sources/apollogeese/Utilities/Collections/bin/Debug/Logging.dll.mdb
-/home/rob/sources/apollogeese/Utilities/Collections/bin/Debug/Collections.dll.mdb
-/home/rob/sources/apollogeese/Utilities/Collections/bin/Debug/Collections.dll
-/home/rob/sources/apollogeese/Utilities/Collections/obj/Debug/Collections.dll
-/home/rob/sources/apollogeese/Utilities/Collections/obj/Debug/Collections.dll.mdb
-/home/rob/sources/apollogeese/Utilities/Collections/bin/Debug/Streaming.dll
-/home/rob/sources/apollogeese/Utilities/Collections/bin/Debug/Streaming.dll.mdb

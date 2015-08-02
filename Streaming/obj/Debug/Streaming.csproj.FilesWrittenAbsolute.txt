@@ -1,5 +1,0 @@
-/home/rob/sources/apollogeese/Utilities/Streaming/obj/Debug/.NETFramework,Version=v4.0.AssemblyAttribute.cs
-/home/rob/sources/apollogeese/Utilities/Streaming/bin/Debug/Streaming.dll.mdb
-/home/rob/sources/apollogeese/Utilities/Streaming/bin/Debug/Streaming.dll
-/home/rob/sources/apollogeese/Utilities/Streaming/obj/Debug/Streaming.dll
-/home/rob/sources/apollogeese/Utilities/Streaming/obj/Debug/Streaming.dll.mdb

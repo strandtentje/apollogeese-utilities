@@ -1,5 +1,0 @@
-/home/rob/sources/apollogeese/Utilities/Logging/obj/Debug/.NETFramework,Version=v4.0.AssemblyAttribute.cs
-/home/rob/sources/apollogeese/Utilities/Logging/bin/Debug/Logging.dll.mdb
-/home/rob/sources/apollogeese/Utilities/Logging/bin/Debug/Logging.dll
-/home/rob/sources/apollogeese/Utilities/Logging/obj/Debug/Logging.dll
-/home/rob/sources/apollogeese/Utilities/Logging/obj/Debug/Logging.dll.mdb
