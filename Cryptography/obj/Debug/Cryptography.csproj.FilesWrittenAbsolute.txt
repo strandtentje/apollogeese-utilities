@@ -1,0 +1,5 @@
+/home/rob/sources/apollogeese/Utilities/Cryptography/obj/Debug/.NETFramework,Version=v4.0.AssemblyAttribute.cs
+/home/rob/sources/apollogeese/Utilities/Cryptography/bin/Debug/Cryptography.dll.mdb
+/home/rob/sources/apollogeese/Utilities/Cryptography/bin/Debug/Cryptography.dll
+/home/rob/sources/apollogeese/Utilities/Cryptography/obj/Debug/Cryptography.dll
+/home/rob/sources/apollogeese/Utilities/Cryptography/obj/Debug/Cryptography.dll.mdb
