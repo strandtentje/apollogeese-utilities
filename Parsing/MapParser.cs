@@ -21,7 +21,7 @@ namespace BorrehSoft.Utensils
 				if ((char)inByte == concatenator)
 				{
 					if (queue.Count == 1) target[queue.Dequeue()] = "";
-					if (queue.Count == 2) target[queue.Dequeue()] = queue.Dequeue();
+					if (queue.Count > 1) target[queue.Dequeue()] = queue.Dequeue();
 					queue.Clear();
 				} else if ((char)inByte == seperator)
 				{
