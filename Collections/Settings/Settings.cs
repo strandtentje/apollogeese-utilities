@@ -83,7 +83,7 @@ namespace BorrehSoft.Utensils.Collections.Settings
             throw new MissingSettingException("", id, "float");
         }
 
-		public IEnumerable<string> GetStringList(string id, params string[] defaults) {
+		public List<string> GetStringList(string id, params string[] defaults) {
 			IEnumerable<object> list = (IEnumerable<object>)base[id];
 			List<string> stringList = new List<string> ();
 
