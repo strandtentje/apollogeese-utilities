@@ -102,35 +102,35 @@ namespace BorrehSoft.Utensils.Parsing
 			return output;
 		}
 
-		internal static bool IsAlpha(char character)
+		public static bool IsAlpha(char character)
 		{
 			return 
 				((character >= 'a') && (character <= 'z')) ||
 					((character >= 'A') && (character <= 'Z'));
 		}
 
-		internal static bool IsNumeric(char character)
+		public static bool IsNumeric(char character)
 		{
 			return
 				(character >= '0') && (character <= '9');
 		}
 
-		internal static bool IsSpace (char character)
+		public static bool IsSpace (char character)
 		{
 			return " \t".IndexOf(character) > -1;
 		}
 
-		internal static bool IsNewline (char character)
+		public static bool IsNewline (char character)
 		{
 			return "\r\n".IndexOf(character) > -1;
 		}
 
-		internal static bool IsAlphaNumeric(char character)
+		public static bool IsAlphaNumeric(char character)
 		{
 			return IsAlpha(character) || IsNumeric(character);
 		}
 
-		internal static bool IsAlphaNumericUsc(char character)
+		public static bool IsAlphaNumericUsc(char character)
 		{
 			return IsAlphaNumeric (character) || (character == '_');
 		}
