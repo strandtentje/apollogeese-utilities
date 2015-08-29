@@ -77,20 +77,34 @@ namespace BorrehSoft.Utensils.Collections.Settings
                 if (floatObj is float)
                 {
                     return (float)floatObj;
-                }
+                } 
             }
 
             throw new MissingSettingException("", id, "float");
         }
 
+		public float GetFloat(string id, float defaultFlt) {
+			if (this.Has (id)) {
+				if (this [id] is float) {
+					return (float)this [id];
+				}
+			}
+
+			return defaultFlt;
+		}
+
 		public List<string> GetStringList(string id, params string[] defaults) {
-			IEnumerable<object> list = (IEnumerable<object>)base[id];
-			List<string> stringList = new List<string> ();
+			if (base.Has (id) && (base[id] is IEnumerable<object>)) {
+				IEnumerable<object> list = (IEnumerable<object>)base [id];
+				List<string> stringList = new List<string> ();
 
-			foreach (object item in list) 
-				stringList.Add ((string)item);
+				foreach (object item in list) 
+					stringList.Add ((string)item);
 
-			return stringList;
+				return stringList;
+			} else {
+				return new List<string> (defaults);
+			}
 		}
 
 		public int GetInt(string id, int otherwise)
