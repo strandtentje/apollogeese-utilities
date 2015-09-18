@@ -178,7 +178,6 @@ namespace BorrehSoft.Utensils.Collections.Settings
 			int successCode = -1;
 			bool Identifier;
 			bool Module = false;
-			bool HasModconf = false;
 			object firstSetting;
 
 			Identifier = TypeIDParser.ParseMethod (session, out uncastTypeid) > 0;
