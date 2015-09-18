@@ -26,6 +26,8 @@ namespace BorrehSoft.Utensils.Collections.Settings
 		IdentifierParser TypeIDParser;
 		ConcatenationParser ModconfParser;
 
+		DiamondFile ModuleParser;
+
 		/// <summary>
 		/// Nulls the parser. (Monodevelop generated this documentation and
 		/// I can't stop laughing so I'm going to leave this here for now)
@@ -125,6 +127,7 @@ namespace BorrehSoft.Utensils.Collections.Settings
 
 			TypeIDParser = new IdentifierParser ();
 			ModconfParser = new ConstructorParser (DefaultValueParser);
+			ModuleParser = new DiamondFile ();
 
 			listParser.InnerParser = ExpressionParser;
 			AssignmentParser.InnerParser = ExpressionParser;
@@ -165,7 +168,7 @@ namespace BorrehSoft.Utensils.Collections.Settings
 		/// </param>
 		internal override int ParseMethod (ParsingSession session, out object result)
 		{
-			object assignments, uncastTypeid, uncastModconf;
+			object assignments, uncastTypeid, uncastModconf = null;
 			Settings rootconf, modconf = new Settings ();
 
 			rootconf = session.References [session.ContextName] as Settings;
@@ -173,11 +176,28 @@ namespace BorrehSoft.Utensils.Collections.Settings
 				rootconf = new Settings ();
 
 			int successCode = -1;
-			bool Identifier = TypeIDParser.ParseMethod (session, out uncastTypeid) > 0;
+			bool Identifier;
+			bool Module = false;
+			bool HasModconf = false;
+			object firstSetting;
 
-			if (Identifier && (ModconfParser.ParseMethod (session, out uncastModconf) > 0)) {
-				string typeid = uncastTypeid as string;
+			Identifier = TypeIDParser.ParseMethod (session, out uncastTypeid) > 0;
+			if (!Identifier) {
+				Module = ModuleParser.ParseMethod (session, out firstSetting) > 0;
+				if (Module) {
+					modconf ["default"] = firstSetting;
+					uncastTypeid = "Module";
+				}
+			}
+
+			if (ModconfParser.ParseMethod (session, out uncastModconf) > 0) {
 				AssignmentsToSettings (uncastModconf, modconf);
+			} else if (Identifier) {
+				throw new ParsingException (session, ModconfParser, session.Ahead, session.Trail);
+			}
+
+			if (Identifier || Module) {
+				string typeid = uncastTypeid as string;
 
 				rootconf ["type"] = typeid;
 				rootconf ["modconf"] = modconf;

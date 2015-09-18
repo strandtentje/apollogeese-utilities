@@ -7,8 +7,6 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Parsing</RootNamespace>
     <AssemblyName>Parsing</AssemblyName>
-    <ProductVersion>12.0.0</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -48,6 +46,7 @@
     <Compile Include="Parsers\Settings\StatementParser.cs" />
     <Compile Include="Parsers\Settings\StructAssignmentParser.cs" />
     <Compile Include="MapParser.cs" />
+    <Compile Include="Parsers\Settings\DiamondFile.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
