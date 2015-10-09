@@ -7,8 +7,6 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Collections</RootNamespace>
     <AssemblyName>Collections</AssemblyName>
-    <ProductVersion>12.0.0</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -49,6 +47,7 @@
     <Compile Include="MultiDict.cs" />
     <Compile Include="StringList.cs" />
     <Compile Include="WaitingQueue.cs" />
+    <Compile Include="NumericMapping.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
