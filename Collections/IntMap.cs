@@ -2,9 +2,9 @@ using System;
 using BorrehSoft.Utensils.Collections.Maps;
 using System.Collections.Generic;
 
-namespace BorrehSoft.Utensils
+namespace BorrehSoft.Utensils.Collections
 {
-	public class NumericMapping<T> 
+	public class IntMap<T> 
 	{
 		T[] numberedBranches = new T[0];
 
@@ -16,7 +16,7 @@ namespace BorrehSoft.Utensils
 					if (key < 0) {
 						return this.Default;
 					} else {
-						if (numberedBranches [key] == default(T)) {
+						if (numberedBranches [key].Equals(default(T))) {
 							return this.Default;
 						} else {
 							return numberedBranches [key];

@@ -2,7 +2,7 @@ using System;
 using BorrehSoft.Utensils.Collections;
 using System.Reflection;
 
-namespace BorrehSoft.Utensils.Colections.Maps
+namespace BorrehSoft.Utensils.Collections.Maps
 {
 	public class ObjectMap : Map<object>
 	{

@@ -47,7 +47,7 @@
     <Compile Include="MultiDict.cs" />
     <Compile Include="StringList.cs" />
     <Compile Include="WaitingQueue.cs" />
-    <Compile Include="NumericMapping.cs" />
+    <Compile Include="IntMap.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
