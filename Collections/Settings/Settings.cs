@@ -69,6 +69,17 @@ namespace BorrehSoft.Utensils.Collections.Settings
 			throw new MissingSettingException ("", id, "int");
 		}
 
+		public decimal GetDecimal(string id, decimal defaultDec) {
+			if (Has (id)) {
+				object decObj = Get (id);
+				if (decObj is decimal) {
+					return (decimal)decObj;
+				}
+			}
+
+			return defaultDec;
+		}
+
         public float GetFloat(string id)
         {
             if (Has(id))

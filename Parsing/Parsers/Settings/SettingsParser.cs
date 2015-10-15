@@ -103,6 +103,7 @@ namespace BorrehSoft.Utensils.Collections.Settings
 			AssignmentParser = new StructAssignmentParser (regularCoupler: couplerChar);
 
 			NumericParser = new AnyParser (
+				new ValueParser<decimal> (decimalParse),
 				new ValueParser<int> (int.TryParse), 
 				new ValueParser<long> (long.TryParse),
 				new ValueParser<float> (floatParse));
@@ -137,8 +138,25 @@ namespace BorrehSoft.Utensils.Collections.Settings
 
         private bool floatParse(string data, out float value)
         {
-            return float.TryParse(data, NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture.NumberFormat, out value);
+            return float.TryParse(
+				data, 
+				NumberStyles.Float, 
+				CultureInfo.InvariantCulture.NumberFormat, 
+				out value);
         }
+
+		private bool decimalParse(string data, out decimal value) {
+			value = 0;
+			if (data.StartsWith ("!")) {
+				return decimal.TryParse (
+					data.Substring (1), 
+					NumberStyles.Currency, 
+					CultureInfo.InvariantCulture.NumberFormat,
+					out value);
+			} else {
+				return false;
+			}
+		}
 
 		/// <summary>
 		/// Bah, wat vies.

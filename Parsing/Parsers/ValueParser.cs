@@ -9,7 +9,7 @@ namespace BorrehSoft.Utensils.Parsing.Parsers
 		private TryParse tryParse;
 		private Regex valuePattern;
 
-		public ValueParser (TryParse tryParse, string regexMatch = "[-+]?[0-9]*\\.?[0-9]+")
+		public ValueParser (TryParse tryParse, string regexMatch = "\\!?[-+]?[0-9]*\\.?[0-9]+")
 		{
 			this.tryParse = tryParse;
 			this.valuePattern = new Regex(regexMatch);
