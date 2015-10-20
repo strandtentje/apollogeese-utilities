@@ -5,7 +5,7 @@ namespace Borrehsoft.Utensils.IO
 {
 	public class FileSource
 	{
-		protected string FilePath;
+		public string FilePath;
 		DateTime LastDate = DateTime.MaxValue; // this will absolutely break something
 		string CachedText;
 
@@ -14,7 +14,7 @@ namespace Borrehsoft.Utensils.IO
 			this.FilePath = filePath;
 		}
 
-		public override string GetText() {
+		public string GetText() {
 			DateTime CurrentDate = File.GetLastWriteTime (this.FilePath);
 			if (!CurrentDate.Equals (LastDate)) {
 				this.LastDate = CurrentDate;
