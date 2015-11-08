@@ -53,6 +53,7 @@
     <Compile Include="WaitingQueue.cs" />
     <Compile Include="IntMap.cs" />
     <Compile Include="FifoPhore.cs" />
+    <Compile Include="Pool.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
