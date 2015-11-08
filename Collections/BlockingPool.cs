@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace BorrehSoft.Utensils.Collections
 {
-	class BlockingPool<T> : IDisposable
+	public class BlockingPool<T> : IDisposable
 	{
 		public Func<T> Constructor {
 			get;
@@ -33,6 +33,8 @@ namespace BorrehSoft.Utensils.Collections
 
 		public Queue<T> UnderlyingPool { get; private set; }
 
+		private List<T> AllCandidates { get; set; }
+
 		FifoPhore underlyingSignalling;
 
 		public int PoolSize {
@@ -42,9 +44,12 @@ namespace BorrehSoft.Utensils.Collections
 			private set {
 				UnderlyingPool = new Queue<T> (value);
 				underlyingSignalling = new FifoPhore (value);
+				AllCandidates = new List<T> ();
 
 				for (int i = 0; i < value; i++) {
-					UnderlyingPool.Enqueue (Constructor ());
+					T candidate = Constructor ();
+					UnderlyingPool.Enqueue (candidate);
+					AllCandidates.Add (candidate);
 				}
 			}
 		}
@@ -71,7 +76,9 @@ namespace BorrehSoft.Utensils.Collections
 		}
 
 		public void Dispose() {
-
+			foreach (T candidate in AllCandidates) {
+				Deconstructor (candidate);
+			}
 		}
 	}
 
