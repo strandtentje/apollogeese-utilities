@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 
-namespace Borrehsoft.Utensils.Collections
+namespace BorrehSoft.Utensils.Collections
 {
 	/// <summary>
 	/// Evil lovebaby between semaphore and queue.
