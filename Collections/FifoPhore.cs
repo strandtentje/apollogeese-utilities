@@ -55,9 +55,9 @@ namespace Borrehsoft.Utensils.Collections
 		}
 
 		/// <summary>
-		/// Stick the number back into the machine.
+		/// Conclude turn
 		/// </summary>
-		public void Exit()
+		public void Release()
 		{
 			lock (overLock)
 			{
