@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace BorrehSoft.Utensils.Collections
 {
-	class Pool<T> : IDisposable
+	class BlockingPool<T> : IDisposable
 	{
 		public Func<T> Constructor {
 			get;
@@ -49,7 +49,7 @@ namespace BorrehSoft.Utensils.Collections
 			}
 		}
 
-		public Pool(int poolsize, Func<T> constructor, Action<T> deconstructor, Func<T, bool> checker = null) {
+		public BlockingPool(int poolsize, Func<T> constructor, Action<T> deconstructor, Func<T, bool> checker = null) {
 			this.Constructor = constructor;
 			this.Deconstructor = deconstructor;
 			this.Checker = DefaultChecker;
