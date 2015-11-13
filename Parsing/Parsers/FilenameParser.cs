@@ -17,7 +17,13 @@ namespace BorrehSoft.Utensils.Parsing.Parsers
 				string fileName, fullPath;
 				base.ParseMethod (session, out fileNameObj);
 				fileName = (string)fileNameObj;
-				fullPath = Path.Combine (session.InteralWorkingDirectory, fileName);
+                
+
+				fullPath = string.Format("{0}{1}{2}",
+                    session.InteralWorkingDirectory,
+                    Path.DirectorySeparatorChar,   
+                    fileName);
+
 				result = fullPath;
 				return fullPath.Length;
 			} else {
