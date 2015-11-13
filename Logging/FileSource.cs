@@ -5,6 +5,18 @@ namespace BorrehSoft.Utensils.IO
 {
 	public class FileSource
 	{
+		DateTime CurrentFiledate {
+			get {
+				return File.GetLastWriteTime (this.FilePath);
+			}
+		}
+
+		public bool IsOutdated {
+			get {
+				return !CurrentFiledate.Equals (LastDate);
+			}
+		}
+
 		public string FilePath;
 		DateTime LastDate = DateTime.MaxValue; // this will absolutely break something
 		string CachedText;
@@ -15,9 +27,8 @@ namespace BorrehSoft.Utensils.IO
 		}
 
 		public string GetText() {
-			DateTime CurrentDate = File.GetLastWriteTime (this.FilePath);
-			if (!CurrentDate.Equals (LastDate)) {
-				this.LastDate = CurrentDate;
+			if (IsOutdated) {
+				this.LastDate = CurrentFiledate;
 				this.CachedText = File.ReadAllText (this.FilePath);
 			}
 			return this.CachedText;
