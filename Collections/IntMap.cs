@@ -16,10 +16,15 @@ namespace BorrehSoft.Utensils.Collections
 					if (key < 0) {
 						return this.Default;
 					} else {
-						if (numberedBranches [key].Equals(default(T))) {
-							return this.Default;
-						} else {
-							return numberedBranches [key];
+                        try {
+                            if (numberedBranches[key].Equals(default(T)))
+                                return this.Default;                            
+                            else
+                                return numberedBranches[key];
+                            
+                        } catch(NullReferenceException ex) {
+                            // go eat a bag of dicks, c#
+                            return this.Default;
 						}
 					}
 				} else {
