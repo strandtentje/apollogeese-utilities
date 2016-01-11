@@ -200,6 +200,9 @@ namespace BorrehSoft.Utensils.Collections.Settings
 			bool Module = false;
 			object firstSetting;
 
+			rootconf ["_configline"] = string.Format (
+				"{0}:{1}", session.SourceFile.FullName, session.CurrentLine);
+
 			Identifier = TypeIDParser.ParseMethod (session, out uncastTypeid) > 0;
 			if (!Identifier) {
 				Module = ModuleParser.ParseMethod (session, out firstSetting) > 0;
