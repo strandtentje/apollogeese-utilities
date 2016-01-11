@@ -236,7 +236,7 @@ namespace BorrehSoft.Utensils.Collections.Settings
 				object successorCandidate;
 				if (this.Run (session, out successorCandidate) > 0) {
 					// good fuck thats ugly
-					rootconf ["successor_branch"] = successorCandidate;
+					rootconf ["_successor_branch"] = successorCandidate;
 				}
 			}
 
