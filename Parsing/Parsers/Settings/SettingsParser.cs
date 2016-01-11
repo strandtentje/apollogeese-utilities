@@ -8,6 +8,8 @@ using System.IO;
 
 namespace BorrehSoft.Utensils.Collections.Settings
 {
+	/// WARNING: THIS IS AN UGLY BASTARD
+
 	/// <summary>
 	/// Settings parser.
 	/// </summary>
@@ -25,7 +27,7 @@ namespace BorrehSoft.Utensils.Collections.Settings
 		StructAssignmentParser AssignmentParser;
 		IdentifierParser TypeIDParser;
 		ConcatenationParser ModconfParser;
-
+		CharacterParser SuccessorMarker = new CharacterParser ('&');
 		DiamondFile ModuleParser;
 
 		/// <summary>
@@ -226,6 +228,15 @@ namespace BorrehSoft.Utensils.Collections.Settings
 				AssignmentsToSettings(assignments, rootconf);
 
 				successCode = 2;
+			}
+
+			object characterCandidate;
+			if (SuccessorMarker.ParseMethod (session, out characterCandidate) > 0) {
+				object successorCandidate;
+				if (this.ParseMethod (session, out successorCandidate)) {
+					// good fuck thats ugly
+					rootconf ["successor_branch"] == successorCandidate;
+				}
 			}
 
 			result = rootconf;
