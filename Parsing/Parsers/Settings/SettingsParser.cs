@@ -231,11 +231,12 @@ namespace BorrehSoft.Utensils.Collections.Settings
 			}
 
 			object characterCandidate;
-			if (SuccessorMarker.ParseMethod (session, out characterCandidate) > 0) {
+
+			if (SuccessorMarker.Run (session, out characterCandidate) > 0) {
 				object successorCandidate;
-				if (this.ParseMethod (session, out successorCandidate)) {
+				if (this.Run (session, out successorCandidate) > 0) {
 					// good fuck thats ugly
-					rootconf ["successor_branch"] == successorCandidate;
+					rootconf ["successor_branch"] = successorCandidate;
 				}
 			}
 
