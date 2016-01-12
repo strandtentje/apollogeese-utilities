@@ -4,6 +4,10 @@ using BorrehSoft.Utensils.Parsing.Parsers;
 
 namespace BorrehSoft.Utensils
 {
+	/// <summary>
+	/// Not some sort of fancy trademark, but actually a pathspec between
+	/// diamond operators <f"so/like/this.txt">
+	/// </summary>
 	public class DiamondFile : Parser
 	{
 		CharacterParser opener = new CharacterParser('<');
