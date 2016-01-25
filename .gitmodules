@@ -1,3 +1,6 @@
 [submodule "CronNET"]
 	path = CronNET
 	url = git@github.com:strandtentje/CronNET.git
+[submodule "BCrypt"]
+	path = BCrypt
+	url = git@github.com:martinsteel/Bcrypt.NET.git
