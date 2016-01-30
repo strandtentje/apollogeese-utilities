@@ -12,9 +12,17 @@ namespace BorrehSoft.Utensils
 	{
 		CharacterParser opener = new CharacterParser('<');
 		CharacterParser closer = new CharacterParser('>');
-		FilenameParser file = new FilenameParser();
+		Parser innerParser;
 
 		object dummy;
+
+		public DiamondFile() {
+			innerParser = new FilenameParser ();
+		}
+
+		public DiamondFile(Parser innerParser) {
+			this.innerParser = innerParser;
+		}
 
 		internal override int ParseMethod (ParsingSession session, out object result)
 		{
@@ -23,7 +31,7 @@ namespace BorrehSoft.Utensils
 			result = null;
 
 			if (opener.ParseMethod (session, out dummy) > 0) {
-				if (file.ParseMethod (session, out result) > 0) {
+				if (this.innerParser.ParseMethod (session, out result) > 0) {
 					if (closer.ParseMethod (session, out dummy) > 0) {
 						filenameLength = ((string)result).Length;
 					}

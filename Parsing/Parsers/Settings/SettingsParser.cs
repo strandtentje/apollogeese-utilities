@@ -130,7 +130,12 @@ namespace BorrehSoft.Utensils.Collections.Settings
 
 			TypeIDParser = new IdentifierParser ();
 			ModconfParser = new ConstructorParser (DefaultValueParser);
-			ModuleParser = new DiamondFile ();
+
+			ModuleParser = new DiamondFile (new AnyParser(
+				new FilenameParser(),
+				new StringParser(),
+				new ReferenceParser()
+			));
 
 			listParser.InnerParser = ExpressionParser;
 			AssignmentParser.InnerParser = ExpressionParser;
