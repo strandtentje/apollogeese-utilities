@@ -4,3 +4,4 @@
 [submodule "BCrypt"]
 	path = BCrypt
 	url = git@github.com:strandtentje/Bcrypt.NET.git
+	branch = master
