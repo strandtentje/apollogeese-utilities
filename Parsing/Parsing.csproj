@@ -53,6 +53,7 @@
     <Compile Include="Parsers\Settings\StructAssignmentParser.cs" />
     <Compile Include="MapParser.cs" />
     <Compile Include="Parsers\Settings\DiamondFile.cs" />
+    <Compile Include="NameValuePiper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

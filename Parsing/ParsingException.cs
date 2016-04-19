@@ -8,7 +8,7 @@ namespace BorrehSoft.Utensils.Parsing
 	/// Parsing exception. This occurs when no suitable parser was found
 	/// for the data at the current cursor position.
 	/// </summary>
-	class ParsingException : Exception
+	public class ParsingException : Exception
 	{
 		public ParsingException (ParsingSession session, Parser parser, string after = "(not given)", string before = "(not given)") : 
 			base (
