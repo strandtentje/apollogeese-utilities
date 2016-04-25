@@ -8,12 +8,12 @@ namespace Parsing
 	/// <summary>
 	/// Name value piper.
 	/// </summary>
-	public class NameValuePiper<T1>
+	public class NameValuePiper<T1, T2>
 	{
 		/// <summary>
 		/// Name value callback.
 		/// </summary>
-		public delegate void NameValueCallback (string name, string value);
+		public delegate void NameValueCallback (string name, T2 value);
 
 		/// <summary>
 		/// Name value reader callback.
