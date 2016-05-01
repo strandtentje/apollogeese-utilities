@@ -1,6 +1,7 @@
 using System;
 using BorrehSoft.Utensils.Collections;
 using System.Collections.Generic;
+using System.Text;
 
 namespace BorrehSoft.Utensils.Parsing.Parsers
 {
@@ -10,6 +11,7 @@ namespace BorrehSoft.Utensils.Parsing.Parsers
 	public class ConcatenationParser : Parser
 	{
 		public Parser InnerParser { get; set; }
+		public bool StringMerge { get; set; }
 		protected CharacterParser opener, closer, coupler;
 
 		public override string ToString ()
@@ -19,11 +21,12 @@ namespace BorrehSoft.Utensils.Parsing.Parsers
 				coupler.TargetCharacter, opener.TargetCharacter, closer.TargetCharacter);
 		}
 
-		public ConcatenationParser (char openerChar, char closerChar, char couplerChar)
+		public ConcatenationParser (char openerChar, char closerChar, char couplerChar, bool stringMerge = false)
 		{
 			this.opener = new CharacterParser (openerChar);
 			this.closer = new CharacterParser (closerChar);
 			this.coupler = new CharacterParser (couplerChar);
+			this.StringMerge = stringMerge;
 		}
 
 		protected virtual int ParseListBody (ParsingSession session, ref List<object> target)
@@ -53,16 +56,27 @@ namespace BorrehSoft.Utensils.Parsing.Parsers
 		}
 
 		internal override int ParseMethod (ParsingSession session, out object result)
-        		{
+		{
+			int successValue = -1;
+
 			if (opener.Run (session) > 0) {
-				List<object> target = new List<object>();
-				result = target;
+				List<object> target = new List<object> ();
+				successValue = ParseListBody (session, ref target);
 
-				return ParseListBody (session, ref target);
-			}
+				if (this.StringMerge) {
+					StringBuilder mergedString = new StringBuilder ();
+					foreach (object component in target) {
+						mergedString.Append (component);
+					}
+					result = mergedString.ToString ();
+				} else {
+					result = target;
+				}
+			} else {
+				result = null;
+			}			
 
-			result = null;
-			return -1;
+			return successValue;
 		}
 	}
 }
