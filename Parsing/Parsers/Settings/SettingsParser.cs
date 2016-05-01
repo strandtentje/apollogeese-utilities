@@ -24,6 +24,8 @@ namespace BorrehSoft.Utensils.Collections.Settings
 		AnyParser DefaultValueParser;
 		AnyParser ExpressionParser;
 		AnyParser NumericParser;
+		AnyParser StringishParser;
+		ConcatenationParser ConcatenatedStringParser;
 		StructAssignmentParser AssignmentParser;
 		IdentifierParser TypeIDParser;
 		ConcatenationParser ModconfParser;
@@ -119,11 +121,18 @@ namespace BorrehSoft.Utensils.Collections.Settings
 				new FilenameParser (),
 				new StringParser ());
 
-			ExpressionParser = new AnyParser (
-				ValueParser, 
+			StringishParser = new AnyParser (
 				new FilenameParser (),
 				new ReferenceParser (),
-				new StringParser (), 
+				new StringParser ());
+			
+			ConcatenatedStringParser = new ConcatenationParser ('/', '/', '|', true);
+			ConcatenatedStringParser.InnerParser = StringishParser;
+
+			ExpressionParser = new AnyParser (
+				ValueParser, 
+				StringishParser,
+				ConcatenatedStringParser,
 				listParser, 
 				this
 			);			
