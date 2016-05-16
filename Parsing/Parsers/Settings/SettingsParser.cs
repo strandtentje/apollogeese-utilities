@@ -26,7 +26,7 @@ namespace BorrehSoft.Utensils.Collections.Settings
 		AnyParser NumericParser;
 		AnyParser StringishParser;
 		ConcatenationParser ConcatenatedStringParser;
-		StructAssignmentParser AssignmentParser;
+		StructAssignmentParser AssignmentParser, OverrideAssignmentParser;
 		IdentifierParser TypeIDParser;
 		ConcatenationParser ModconfParser;
 		CharacterParser SuccessorMarker = new CharacterParser ('&');
@@ -104,8 +104,6 @@ namespace BorrehSoft.Utensils.Collections.Settings
 		{
 			ConcatenationParser listParser = new ConcatenationParser (startArr, endArr, arrSe);
 
-			AssignmentParser = new StructAssignmentParser (regularCoupler: couplerChar);
-
 			NumericParser = new AnyParser (
 				new ValueParser<decimal> (decimalParse),
 				new ValueParser<int> (int.TryParse), 
@@ -147,9 +145,14 @@ namespace BorrehSoft.Utensils.Collections.Settings
 			));
 
 			listParser.InnerParser = ExpressionParser;
+
+			AssignmentParser = new StructAssignmentParser ("->", "_branch", couplerChar);
 			AssignmentParser.InnerParser = ExpressionParser;
-			ModconfParser.InnerParser = AssignmentParser;
 			this.InnerParser = AssignmentParser;
+
+			OverrideAssignmentParser = new StructAssignmentParser ("<-", "_override", couplerChar);
+			OverrideAssignmentParser.InnerParser = ExpressionParser;
+			ModconfParser.InnerParser = OverrideAssignmentParser;
 		}
 
         private bool floatParse(string data, out float value)
