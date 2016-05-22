@@ -115,19 +115,20 @@ namespace BorrehSoft.Utensils.Collections.Settings
 			ValueParser = new AnyParser (
 				NumericParser,
 				new ValueParser<bool> (bool.TryParse, "(True|False|true|false)"));
-
-			DefaultValueParser = new AnyParser (
-				NumericParser, 
-				new FilenameParser (),
-				new StringParser ());
-
+			
 			StringishParser = new AnyParser (
 				new FilenameParser (),
 				new ReferenceParser (),
 				new StringParser ());
-			
+
 			ConcatenatedStringParser = new ConcatenationParser ('/', '/', '|', true);
 			ConcatenatedStringParser.InnerParser = StringishParser;
+
+			DefaultValueParser = new AnyParser (
+				NumericParser, 
+				new FilenameParser (),
+				new StringParser (),
+				ConcatenatedStringParser);
 
 			ExpressionParser = new AnyParser (
 				ValueParser, 
@@ -250,12 +251,12 @@ namespace BorrehSoft.Utensils.Collections.Settings
 
 			if (PresetBranchesParser.ParseMethod (session, out referenceCandidate) > 0) {
 				if (referenceCandidate is Settings) {
-					rootconf = new Settings (
-						new CombinedMap<object> (
-							rootconf, 
-							(Settings)referenceCandidate
-						)
-					);
+					Settings referred = (Settings)referenceCandidate;
+					foreach (KeyValuePair<string, object> setting in referred.Dictionary) {
+						if (!setting.Key.StartsWith ("_")) {
+							rootconf [setting.Key] = setting.Value;
+						}
+					}
 				} else {
 					throw new ParsingException (session, PresetBranchesParser, session.Ahead, session.Trail);
 				}
