@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using BorrehSoft.Utensils.Log;
 using System.IO;
+using BorrehSoft.Utensils.Collections.Maps;
 
 namespace BorrehSoft.Utensils.Collections.Settings
 {
@@ -31,6 +32,7 @@ namespace BorrehSoft.Utensils.Collections.Settings
 		ConcatenationParser ModconfParser;
 		CharacterParser SuccessorMarker = new CharacterParser ('&');
 		DiamondFile ModuleParser;
+		ReferenceParser PresetBranchesParser = new ReferenceParser ();
 
 		/// <summary>
 		/// Nulls the parser. (Monodevelop generated this documentation and
@@ -244,7 +246,20 @@ namespace BorrehSoft.Utensils.Collections.Settings
 				successCode = 1;
 			}
 
-			if (base.ParseMethod (session, out assignments) > 0) {
+			object referenceCandidate;
+
+			if (PresetBranchesParser.ParseMethod (session, out referenceCandidate) > 0) {
+				if (referenceCandidate is Settings) {
+					rootconf = new Settings (
+						new CombinedMap<object> (
+							rootconf, 
+							(Settings)referenceCandidate
+						)
+					);
+				} else {
+					throw new ParsingException (session, PresetBranchesParser, session.Ahead, session.Trail);
+				}
+			} else if (base.ParseMethod (session, out assignments) > 0) {
 				AssignmentsToSettings(assignments, rootconf);
 
 				successCode = 2;
