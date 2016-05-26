@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using BorrehSoft.Utensils.Log;
 using System.IO;
+using BorrehSoft.Utensils.Collections.Maps;
 
 namespace BorrehSoft.Utensils.Collections.Settings
 {
@@ -31,6 +32,7 @@ namespace BorrehSoft.Utensils.Collections.Settings
 		ConcatenationParser ModconfParser;
 		CharacterParser SuccessorMarker = new CharacterParser ('&');
 		DiamondFile ModuleParser;
+		ReferenceParser PresetBranchesParser = new ReferenceParser ();
 
 		/// <summary>
 		/// Nulls the parser. (Monodevelop generated this documentation and
@@ -113,19 +115,20 @@ namespace BorrehSoft.Utensils.Collections.Settings
 			ValueParser = new AnyParser (
 				NumericParser,
 				new ValueParser<bool> (bool.TryParse, "(True|False|true|false)"));
-
-			DefaultValueParser = new AnyParser (
-				NumericParser, 
-				new FilenameParser (),
-				new StringParser ());
-
+			
 			StringishParser = new AnyParser (
 				new FilenameParser (),
 				new ReferenceParser (),
 				new StringParser ());
-			
+
 			ConcatenatedStringParser = new ConcatenationParser ('/', '/', '|', true);
 			ConcatenatedStringParser.InnerParser = StringishParser;
+
+			DefaultValueParser = new AnyParser (
+				NumericParser, 
+				new FilenameParser (),
+				new StringParser (),
+				ConcatenatedStringParser);
 
 			ExpressionParser = new AnyParser (
 				ValueParser, 
@@ -244,7 +247,20 @@ namespace BorrehSoft.Utensils.Collections.Settings
 				successCode = 1;
 			}
 
-			if (base.ParseMethod (session, out assignments) > 0) {
+			object referenceCandidate;
+
+			if (PresetBranchesParser.ParseMethod (session, out referenceCandidate) > 0) {
+				if (referenceCandidate is Settings) {
+					Settings referred = (Settings)referenceCandidate;
+					foreach (KeyValuePair<string, object> setting in referred.Dictionary) {
+						if (!setting.Key.StartsWith ("_")) {
+							rootconf [setting.Key] = setting.Value;
+						}
+					}
+				} else {
+					throw new ParsingException (session, PresetBranchesParser, session.Ahead, session.Trail);
+				}
+			} else if (base.ParseMethod (session, out assignments) > 0) {
 				AssignmentsToSettings(assignments, rootconf);
 
 				successCode = 2;
