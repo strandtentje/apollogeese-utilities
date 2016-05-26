@@ -45,16 +45,15 @@ namespace BorrehSoft.Utensils.Log
 		{
 			string tmpChunk;
 
-			lock(fileOut)
+			while(running)
 			{
-				while(running)
+				logSignal.WaitOne();
+				lock(fileOut)
 				{
-					logSignal.WaitOne();
 					ConsumeLines (out tmpChunk);
-					Console.Write(tmpChunk); fileOut.Write(tmpChunk);
+					Console.Write(tmpChunk); 
+					fileOut.Write(tmpChunk);
 				}
-
-				fileOut.Close();
 			}
 		}
 
