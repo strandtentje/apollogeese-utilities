@@ -260,7 +260,9 @@ namespace BorrehSoft.Utensils.Collections.Settings
 				} else {
 					throw new ParsingException (session, PresetBranchesParser, session.Ahead, session.Trail);
 				}
-			} else if (base.ParseMethod (session, out assignments) > 0) {
+			} 
+
+			if (base.ParseMethod (session, out assignments) > 0) {
 				AssignmentsToSettings(assignments, rootconf);
 
 				successCode = 2;
