@@ -53,7 +53,7 @@ namespace BorrehSoft.Utensils.Collections.Settings
 		/// </summary>
 		/// <returns>The file.</returns>
 		/// <param name="file">File.</param>
-		public static Settings FromFile(string file)
+		public static Settings FromFile(string file, string workingDirectory = null)
 		{
 			Secretary.Report (5, "Loading settings file ", file);
 
@@ -63,7 +63,12 @@ namespace BorrehSoft.Utensils.Collections.Settings
 			}
 
 			ParsingSession session = ParsingSession.FromFile(file, new IncludeParser());
-			Directory.SetCurrentDirectory (session.SourceFile.Directory.FullName);
+			if (workingDirectory == null) {
+				Directory.SetCurrentDirectory (session.SourceFile.Directory.FullName);
+			} else if (Directory.Exists(workingDirectory)) {
+				Directory.SetCurrentDirectory(workingDirectory);
+			}
+
 			SettingsParser parser = new SettingsParser();
 			object result;
 
