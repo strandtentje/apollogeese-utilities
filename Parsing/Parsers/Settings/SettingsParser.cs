@@ -63,10 +63,12 @@ namespace BorrehSoft.Utensils.Collections.Settings
 			}
 
 			ParsingSession session = ParsingSession.FromFile(file, new IncludeParser());
+
 			if (workingDirectory == null) {
 				Directory.SetCurrentDirectory (session.SourceFile.Directory.FullName);
 			} else if (Directory.Exists(workingDirectory)) {
 				Directory.SetCurrentDirectory(workingDirectory);
+				session.WorkingDirectory = workingDirectory;
 			}
 
 			SettingsParser parser = new SettingsParser();

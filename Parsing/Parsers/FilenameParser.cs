@@ -20,7 +20,7 @@ namespace BorrehSoft.Utensils.Parsing.Parsers
                 
 
 				fullPath = string.Format("{0}{1}{2}",
-                    session.InteralWorkingDirectory,
+                    session.WorkingDirectory,
                     Path.DirectorySeparatorChar,   
                     fileName);
 
