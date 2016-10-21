@@ -58,7 +58,7 @@ namespace BorrehSoft.Utensils.Collections.Settings
 			Secretary.Report (5, "Loading settings file ", file);
 
 			if (!File.Exists (file)) {
-				File.Create (file);
+                File.WriteAllText(file, "{}");
 				Secretary.Report (5, file, " didn't exist. Has been created.");
 			}
 
