@@ -54,6 +54,8 @@
     <Compile Include="IntMap.cs" />
     <Compile Include="FifoPhore.cs" />
     <Compile Include="BlockingPool.cs" />
+    <Compile Include="DuplicateKeyComparer.cs" />
+    <Compile Include="ReverseDuplicateKeyComparer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
