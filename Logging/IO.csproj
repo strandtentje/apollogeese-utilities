@@ -28,11 +28,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Profiling\Entry.cs" />
-    <Compile Include="Profiling\Profiler.cs" />
-    <Compile Include="Profiling\Report.cs" />
     <Compile Include="Secretary.cs" />
     <Compile Include="FileSource.cs" />
+    <Compile Include="Profiling\SingleThreaded\Entry.cs" />
+    <Compile Include="Profiling\SingleThreaded\Profiler.cs" />
+    <Compile Include="Profiling\SingleThreaded\Report.cs" />
+    <Compile Include="Profiling\ThreadAware\ThreadAwareProfiler.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Profiling\SingleThreaded\" />
+    <Folder Include="Profiling\ThreadAware\" />
+  </ItemGroup>
 </Project>
