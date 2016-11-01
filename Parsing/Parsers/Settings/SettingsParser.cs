@@ -31,8 +31,10 @@ namespace BorrehSoft.Utensils.Collections.Settings
 		IdentifierParser TypeIDParser;
 		ConcatenationParser ModconfParser;
 		CharacterParser SuccessorMarker = new CharacterParser ('&');
+		CharacterParser ChainMarker = new CharacterParser (':');
 		DiamondFile ModuleParser;
 		ReferenceParser PresetBranchesParser = new ReferenceParser ();
+		ReferenceParser ChainedBranchParser = new ReferenceParser ();
 
 		/// <summary>
 		/// Nulls the parser. (Monodevelop generated this documentation and
@@ -269,13 +271,36 @@ namespace BorrehSoft.Utensils.Collections.Settings
 				}
 			} 
 
+			object characterCandidate;
+
+			if (ChainMarker.ParseMethod (session, out characterCandidate) > 0) {
+				object chainCandidate;
+				if (ChainedBranchParser.ParseMethod (session, out chainCandidate) > 0) {
+					if (!(chainCandidate is Settings)) {
+						throw new ParsingException (
+							session, 
+							ChainedBranchParser, 
+							session.Ahead, 
+							session.Trail
+						);
+					}
+				} else if (this.Run(session, out chainCandidate) < 1) {
+					throw new ParsingException (
+						session, 
+						this, 
+						session.Ahead,
+						session.Trail
+					);
+				}
+
+				rootconf ["_with_branch"] = chainCandidate;
+			}
+
 			if (base.ParseMethod (session, out assignments) > 0) {
 				AssignmentsToSettings(assignments, rootconf);
 
 				successCode = 2;
 			}
-
-			object characterCandidate;
 
 			if (SuccessorMarker.Run (session, out characterCandidate) > 0) {
 				object successorCandidate;
