@@ -1,6 +1,3 @@
 [submodule "CronNET"]
 	path = CronNET
 	url = git@github.com:strandtentje/CronNET.git
-[submodule "Http-Multipart-Data-Parser"]
-	path = Http-Multipart-Data-Parser
-	url = git@github.com:Vodurden/Http-Multipart-Data-Parser.git
