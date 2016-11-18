@@ -6,6 +6,7 @@ using System.Globalization;
 using BorrehSoft.Utensils.Log;
 using System.IO;
 using BorrehSoft.Utensils.Collections.Maps;
+using BorrehSoft.Utensils.Parsing.Parsers.Settings;
 
 namespace BorrehSoft.Utensils.Collections.Settings
 {
@@ -21,172 +22,38 @@ namespace BorrehSoft.Utensils.Collections.Settings
 			return "Settings, accolade-enclosed block with zero or more assignments";
 		}
 
-		AnyParser ValueParser;
-		AnyParser DefaultValueParser;
-		AnyParser ExpressionParser;
-		AnyParser NumericParser;
-		AnyParser StringishParser;
-		ConcatenationParser ConcatenatedStringParser;
-		StructAssignmentParser AssignmentParser, OverrideAssignmentParser;
-		IdentifierParser TypeIDParser;
-		ConcatenationParser ModconfParser;
-		CharacterParser SuccessorMarker = new CharacterParser ('&');
-		CharacterParser ChainMarker = new CharacterParser (':');
-		DiamondFile ModuleParser;
-		ReferenceParser PresetBranchesParser = new ReferenceParser ();
-		ReferenceParser ChainedBranchParser = new ReferenceParser ();
-
-		/// <summary>
-		/// Nulls the parser. (Monodevelop generated this documentation and
-		/// I can't stop laughing so I'm going to leave this here for now)
-		/// </summary>
-		/// <returns><c>true</c>, if parser was nulled, <c>false</c> otherwise.</returns>
-		/// <param name="data">Data.</param>
-		/// <param name="value">Value.</param>
-		private bool nullParser(string data, out object value) 
-		{
-			value = null;
-			return data == "null";
-		}
-
-
-		/// <summary>
-		/// Acquires settings from the file.
-		/// </summary>
-		/// <returns>The file.</returns>
-		/// <param name="file">File.</param>
-		public static Settings FromFile(string file, string workingDirectory = null)
-		{
-			Secretary.Report (5, "Loading settings file ", file);
-
-			if (!File.Exists (file)) {
-                File.WriteAllText(file, "{}");
-				Secretary.Report (5, file, " didn't exist. Has been created.");
-			}
-
-			ParsingSession session = ParsingSession.FromFile(file, new IncludeParser());
-
-			if (workingDirectory == null) {
-				Directory.SetCurrentDirectory (session.SourceFile.Directory.FullName);
-			} else if (Directory.Exists(workingDirectory)) {
-				Directory.SetCurrentDirectory(workingDirectory);
-				session.WorkingDirectory = workingDirectory;
-			}
-
-			SettingsParser parser = new SettingsParser();
-			object result;
-
-			Settings config;
-
-			if (parser.Run (session, out result) < 0)
-				config = new Settings ();
-			else 
-				config = (Settings)result;
-
-			config.SourceFile = session.SourceFile;
-
-			Secretary.Report (5, "Settings finished loading from: ", file);
-
-			// Secretary.Report (6, session.ParsingProfiler.FinalizeIntoReport().ToString());
-
-			return config;
-		}
-
-		public static Settings FromJson (string data)
-		{
-			ParsingSession session = new ParsingSession(data, new WhitespaceParser());
-			SettingsParser parser = new SettingsParser(entitySe: ',', couplerChar: ':');
-
-			object result;
-
-			if (parser.Run(session, out result) < 0)
-				return new Settings();
-
-			return (Settings) result;
-		}
+		CharacterParser 
+		SuccessorMarker = new CharacterParser ('&'),
+		ChainMarker = new CharacterParser (':');
+		DiamondFile DiamondParser = new DiamondFile ();
+		ReferenceParser ReferenceParser = new ReferenceParser ();
+		IdentifierParser NameParser = new IdentifierParser ();
+		ConcatenationParser ConfigurationParser;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="BorrehSoft.Utensils.Settings.SettingsParser"/> class.
 		/// </summary>
-		public SettingsParser(
-			char startBlock = '{', char endBlock = '}', char entitySe = ';', 
-			char startArr = '[', char endArr = ']', char arrSe = ',',
-			char couplerChar = '=') : base(startBlock, endBlock, entitySe)
+		public SettingsParser(char entitySe = ';', char arrSe = ',', char couplerChar = '=') : base('{', '}', entitySe)
 		{
-			ConcatenationParser listParser = new ConcatenationParser (startArr, endArr, arrSe);
-
-			NumericParser = new AnyParser (
-				new ValueParser<decimal> (decimalParse),
-				new ValueParser<int> (int.TryParse), 
-				new ValueParser<long> (long.TryParse),
-				new ValueParser<float> (floatParse));
-
-			ValueParser = new AnyParser (
-				NumericParser,
-				new ValueParser<bool> (bool.TryParse, "(True|False|true|false)"));
-			
-			StringishParser = new AnyParser (
-				new FilenameParser (),
-				new ReferenceParser (),
-				new StringParser ());
-
-			ConcatenatedStringParser = new ConcatenationParser ('/', '/', '|', true);
-			ConcatenatedStringParser.InnerParser = StringishParser;
-
-			DefaultValueParser = new AnyParser (
-				NumericParser, 
-				new FilenameParser (),
-				new StringParser (),
-				ConcatenatedStringParser);
-
-			ExpressionParser = new AnyParser (
-				ValueParser, 
-				StringishParser,
-				ConcatenatedStringParser,
+			ConcatenationParser listParser = new ConcatenationParser ('[', ']', arrSe);
+			AnyParser ExpressionParser = new AnyParser (
+				new AnyValueParser(), 
+				new AnyStringParser(),
+				new StringConcatenationParser(),
 				listParser, 
 				this
 			);			
-
-			TypeIDParser = new IdentifierParser ();
-			ModconfParser = new ConstructorParser (DefaultValueParser);
-
-			ModuleParser = new DiamondFile (new AnyParser(
-				new FilenameParser(),
-				new StringParser(),
-				new ReferenceParser()
-			));
-
 			listParser.InnerParser = ExpressionParser;
 
-			AssignmentParser = new StructAssignmentParser ("->", "_branch", couplerChar);
-			AssignmentParser.InnerParser = ExpressionParser;
-			this.InnerParser = AssignmentParser;
+			this.InnerParser = new SubstitutionAssignmentParser ("->", "_branch", couplerChar) {
+				InnerParser = ExpressionParser
+			};
 
-			OverrideAssignmentParser = new StructAssignmentParser ("<-", "_override", couplerChar);
-			OverrideAssignmentParser.InnerParser = ExpressionParser;
-			ModconfParser.InnerParser = OverrideAssignmentParser;
-		}
-
-        private bool floatParse(string data, out float value)
-        {
-            return float.TryParse(
-				data, 
-				NumberStyles.Float, 
-				CultureInfo.InvariantCulture.NumberFormat, 
-				out value);
-        }
-
-		private bool decimalParse(string data, out decimal value) {
-			value = 0;
-			if (data.StartsWith ("!")) {
-				return decimal.TryParse (
-					data.Substring (1), 
-					NumberStyles.Currency, 
-					CultureInfo.InvariantCulture.NumberFormat,
-					out value);
-			} else {
-				return false;
-			}
+			ConfigurationParser = new ConstructorParser () {
+				InnerParser = new SubstitutionAssignmentParser ("<-", "_override", couplerChar) {
+					InnerParser = ExpressionParser
+				}
+			};
 		}
 
 		/// <summary>
@@ -217,57 +84,59 @@ namespace BorrehSoft.Utensils.Collections.Settings
 		/// </param>
 		internal override int ParseMethod (ParsingSession session, out object result)
 		{
-			object assignments, uncastTypeid, uncastModconf = null;
-			Settings rootconf, modconf = new Settings ();
+			object assignments, uncastName, uncastConfiguration = null;
+			Settings definition, configuration = new Settings ();
 
-			rootconf = session.References [session.ContextName] as Settings;
-			if (rootconf == null)
-				rootconf = new Settings ();
+			definition = session.References [session.ContextName] as Settings;
+			if (definition == null)
+				definition = new Settings ();
 
 			int successCode = -1;
-			bool Identifier;
-			bool Module = false;
-			object firstSetting;
+			bool isNamed, isDiamond = false;
 
-			rootconf ["_configline"] = string.Format (
-				"{0}:{1}", session.SourceFile.FullName, session.CurrentLine);
+			definition ["_configline"] = string.Format (
+				"{0}:{1}", 
+				session.SourceFile.FullName, 
+				session.CurrentLine + 1
+			);
 
-			Identifier = TypeIDParser.ParseMethod (session, out uncastTypeid) > 0;
-			if (!Identifier) {
-				Module = ModuleParser.ParseMethod (session, out firstSetting) > 0;
-				if (Module) {
-					modconf ["default"] = firstSetting;
-					uncastTypeid = "Module";
+			isNamed = NameParser.ParseMethod (session, out uncastName) > 0;
+			if (!isNamed) {
+				object firstSetting;
+				isDiamond = DiamondParser.ParseMethod (session, out firstSetting) > 0;
+				if (isDiamond) {
+					configuration ["default"] = firstSetting;
+					uncastName = "Module";
 				}
 			}
 
-			if (ModconfParser.ParseMethod (session, out uncastModconf) > 0) {
-				AssignmentsToSettings (uncastModconf, modconf);
-			} else if (Identifier) {
-				throw new ParsingException (session, ModconfParser, session.Ahead, session.Trail);
+			if (ConfigurationParser.ParseMethod (session, out uncastConfiguration) > 0) {
+				AssignmentsToSettings (uncastConfiguration, configuration);
+			} else if (isNamed) {
+				throw new ParsingException (session, ConfigurationParser, session.Ahead, session.Trail);
 			}
 
-			if (Identifier || Module) {
-				string typeid = uncastTypeid as string;
+			if (isNamed || isDiamond) {
+				string typeid = uncastName as string;
 
-				rootconf ["type"] = typeid;
-				rootconf ["modconf"] = modconf;
+				definition ["type"] = typeid;
+				definition ["modconf"] = configuration;
 
 				successCode = 1;
 			}
 
 			object referenceCandidate;
 
-			if (PresetBranchesParser.ParseMethod (session, out referenceCandidate) > 0) {
+			if (ReferenceParser.ParseMethod (session, out referenceCandidate) > 0) {
 				if (referenceCandidate is Settings) {
 					Settings referred = (Settings)referenceCandidate;
 					foreach (KeyValuePair<string, object> setting in referred.Dictionary) {
 						if (!setting.Key.StartsWith ("_")) {
-							rootconf [setting.Key] = setting.Value;
+							definition [setting.Key] = setting.Value;
 						}
 					}
 				} else {
-					throw new ParsingException (session, PresetBranchesParser, session.Ahead, session.Trail);
+					throw new ParsingException (session, ReferenceParser, session.Ahead, session.Trail);
 				}
 			} 
 
@@ -275,11 +144,11 @@ namespace BorrehSoft.Utensils.Collections.Settings
 
 			if (ChainMarker.ParseMethod (session, out characterCandidate) > 0) {
 				object chainCandidate;
-				if (ChainedBranchParser.ParseMethod (session, out chainCandidate) > 0) {
+				if (ReferenceParser.ParseMethod (session, out chainCandidate) > 0) {
 					if (!(chainCandidate is Settings)) {
 						throw new ParsingException (
 							session, 
-							ChainedBranchParser, 
+							ReferenceParser, 
 							session.Ahead, 
 							session.Trail
 						);
@@ -293,11 +162,11 @@ namespace BorrehSoft.Utensils.Collections.Settings
 					);
 				}
 
-				rootconf ["_with_branch"] = chainCandidate;
+				definition ["_with_branch"] = chainCandidate;
 			}
 
 			if (base.ParseMethod (session, out assignments) > 0) {
-				AssignmentsToSettings(assignments, rootconf);
+				AssignmentsToSettings(assignments, definition);
 
 				successCode = 2;
 			}
@@ -306,11 +175,11 @@ namespace BorrehSoft.Utensils.Collections.Settings
 				object successorCandidate;
 				if (this.Run (session, out successorCandidate) > 0) {
 					// good fuck thats ugly
-					rootconf ["_successor_branch"] = successorCandidate;
+					definition ["_successor_branch"] = successorCandidate;
 				}
 			}
 
-			result = rootconf;
+			result = definition;
 
 			return successCode;
 		}	

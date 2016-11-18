@@ -5,12 +5,12 @@ using System.Collections.Generic;
 
 namespace BorrehSoft.Utensils.Collections.Settings
 {
-	public class StructAssignmentParser : AssignmentParser
+	public class SubstitutionAssignmentParser : AssignmentParser
 	{
 		private string CouplerSuffix { get; set; }
 		List<CharacterParser> couplerParsers = new List<CharacterParser>();
 
-		public StructAssignmentParser(string couplerString = "->", string couplerSuffix = "_branch", char regularCoupler = '=') : base(regularCoupler) {
+		public SubstitutionAssignmentParser(string couplerString, string couplerSuffix, char regularCoupler = '=') : base(regularCoupler) {
 			foreach (char couplerPart in couplerString) {
 				couplerParsers.Add (new CharacterParser (couplerPart));
 			}

@@ -2,6 +2,7 @@ using System;
 using BorrehSoft.Utensils.Parsing;
 using BorrehSoft.Utensils.Parsing.Parsers;
 using System.Collections.Generic;
+using BorrehSoft.Utensils.Parsing.Parsers.Settings;
 
 namespace BorrehSoft.Utensils
 {
@@ -9,9 +10,14 @@ namespace BorrehSoft.Utensils
 	{
 		private Parser valueParser;
 
-		public ConstructorParser (Parser valueParser) : base('(', ')', ',')
+		public ConstructorParser () : base('(', ')', ',')
 		{
-			this.valueParser = valueParser;
+			this.valueParser = new AnyParser (
+				new NumericParser(), 
+				new FilenameParser(),
+				new StringParser(),
+				new StringConcatenationParser()
+			);
 		}		
 
 		protected override int ParseListBody (ParsingSession session, ref List<object> target)

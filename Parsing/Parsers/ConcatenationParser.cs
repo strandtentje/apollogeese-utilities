@@ -11,7 +11,6 @@ namespace BorrehSoft.Utensils.Parsing.Parsers
 	public class ConcatenationParser : Parser
 	{
 		public Parser InnerParser { get; set; }
-		public bool StringMerge { get; set; }
 		protected CharacterParser opener, closer, coupler;
 
 		public override string ToString ()
@@ -21,12 +20,11 @@ namespace BorrehSoft.Utensils.Parsing.Parsers
 				coupler.TargetCharacter, opener.TargetCharacter, closer.TargetCharacter);
 		}
 
-		public ConcatenationParser (char openerChar, char closerChar, char couplerChar, bool stringMerge = false)
+		public ConcatenationParser (char openerChar, char closerChar, char couplerChar)
 		{
 			this.opener = new CharacterParser (openerChar);
 			this.closer = new CharacterParser (closerChar);
 			this.coupler = new CharacterParser (couplerChar);
-			this.StringMerge = stringMerge;
 		}
 
 		protected virtual int ParseListBody (ParsingSession session, ref List<object> target)
@@ -63,15 +61,7 @@ namespace BorrehSoft.Utensils.Parsing.Parsers
 				List<object> target = new List<object> ();
 				successValue = ParseListBody (session, ref target);
 
-				if (this.StringMerge) {
-					StringBuilder mergedString = new StringBuilder ();
-					foreach (object component in target) {
-						mergedString.Append (component);
-					}
-					result = mergedString.ToString ();
-				} else {
-					result = target;
-				}
+				result = target;
 			} else {
 				result = null;
 			}			

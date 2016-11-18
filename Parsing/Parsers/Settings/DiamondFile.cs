@@ -17,11 +17,7 @@ namespace BorrehSoft.Utensils
 		object dummy;
 
 		public DiamondFile() {
-			innerParser = new FilenameParser ();
-		}
-
-		public DiamondFile(Parser innerParser) {
-			this.innerParser = innerParser;
+			this.innerParser = new AnyStringParser ();
 		}
 
 		internal override int ParseMethod (ParsingSession session, out object result)
