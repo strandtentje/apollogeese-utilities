@@ -50,10 +50,16 @@
     <Compile Include="Parsers\Settings\IncludeParser.cs" />
     <Compile Include="Parsers\Settings\SettingsParser.cs" />
     <Compile Include="Parsers\Settings\StatementParser.cs" />
-    <Compile Include="Parsers\Settings\StructAssignmentParser.cs" />
     <Compile Include="MapParser.cs" />
     <Compile Include="Parsers\Settings\DiamondFile.cs" />
     <Compile Include="NameValuePiper.cs" />
+    <Compile Include="Parsers\NumericParser.cs" />
+    <Compile Include="Parsers\BoolParser.cs" />
+    <Compile Include="Parsers\AnyValueParser.cs" />
+    <Compile Include="Parsers\AnyStringParser.cs" />
+    <Compile Include="Parsers\Settings\StringConcatenationParser.cs" />
+    <Compile Include="Parsers\Settings\SubstitutionAssignmentParser.cs" />
+    <Compile Include="Parsers\Settings\SettingsLoader.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
