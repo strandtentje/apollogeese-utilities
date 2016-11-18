@@ -94,11 +94,7 @@ namespace BorrehSoft.Utensils.Collections.Settings
 			int successCode = -1;
 			bool isNamed, isDiamond = false;
 
-			definition ["_configline"] = string.Format (
-				"{0}:{1}", 
-				session.SourceFile.FullName, 
-				session.CurrentLine + 1
-			);
+			definition ["_configline"] = session.GetLineHint ();
 
 			isNamed = NameParser.ParseMethod (session, out uncastName) > 0;
 			if (!isNamed) {

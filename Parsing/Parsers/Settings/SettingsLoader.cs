@@ -45,8 +45,6 @@ namespace BorrehSoft.Utensils.Collections.Settings
 
 			Secretary.Report (5, "Settings finished loading from: ", file);
 
-			// Secretary.Report (6, session.ParsingProfiler.FinalizeIntoReport().ToString());
-
 			return config;
 		}
 	}

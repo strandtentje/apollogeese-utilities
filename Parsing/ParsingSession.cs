@@ -60,6 +60,15 @@ namespace BorrehSoft.Utensils.Parsing
 			return Data.Substring(startpos, len);
 		}
 
+		public object GetLineHint ()
+		{
+			return string.Format (
+				"{0}:{1}", 
+				SourceFile.FullName, 
+				CurrentLine + 1
+			);
+		}
+
 		public string Ahead { get { return GetAhead (); } }
 
 		public string Trail { get { return GetTrail (); } }
