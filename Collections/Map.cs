@@ -18,6 +18,10 @@ namespace BorrehSoft.Utensils.Collections
 			this.backEnd = origin.backEnd;
 		}
 
+		public Map(Dictionary<string, T> origin) {
+			this.backEnd = origin;
+		}
+
 		/// <summary>
 		/// Gets the dictionary.
 		/// </summary>
@@ -59,7 +63,7 @@ namespace BorrehSoft.Utensils.Collections
 			backEnd.Remove(key);
 		}
 
-		/// <summary>
+				/// <summary>
 		/// Adds the item with specified key.
 		/// </summary>
 		/// <param name='key'>

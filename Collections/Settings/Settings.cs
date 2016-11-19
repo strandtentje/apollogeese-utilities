@@ -23,8 +23,19 @@ namespace BorrehSoft.Utensils.Collections.Settings
 
 		public static Settings FromMerge (params Settings[] bases)
 		{
-			// Is this dirty? Yes.
-			return new Settings (new CombinedMap<object> (bases));
+			var combinationMap = new CombinedMap<object> (bases);
+			var combinedDict = combinationMap.Dictionary;
+			var newSettings = new Settings (new Map<object> (combinedDict));
+
+			return newSettings;
+		}
+
+		public static Settings FromTuples(IEnumerable<Tuple<string, object>> tuples) {
+			var settings = new Settings ();
+			foreach (var tuple in tuples) {
+				settings [tuple.Item1] = tuple.Item2;
+			}
+			return settings;
 		}
 
 		public FileInfo SourceFile { get; set; }
