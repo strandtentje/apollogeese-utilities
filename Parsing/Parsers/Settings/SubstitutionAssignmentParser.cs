@@ -3,7 +3,7 @@ using BorrehSoft.Utensils.Parsing.Parsers;
 using BorrehSoft.Utensils.Parsing;
 using System.Collections.Generic;
 
-namespace BorrehSoft.Utensils.Collections.Settings
+namespace BorrehSoft.Utensils.Parsing.Parsers.SettingsParsers
 {
 	public class SubstitutionAssignmentParser : AssignmentParser
 	{

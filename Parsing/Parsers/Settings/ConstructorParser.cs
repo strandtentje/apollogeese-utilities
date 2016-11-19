@@ -2,21 +2,21 @@ using System;
 using BorrehSoft.Utensils.Parsing;
 using BorrehSoft.Utensils.Parsing.Parsers;
 using System.Collections.Generic;
-using BorrehSoft.Utensils.Parsing.Parsers.Settings;
 
-namespace BorrehSoft.Utensils
+namespace BorrehSoft.Utensils.Parsing.Parsers.SettingsParsers
 {
 	public class ConstructorParser : ConcatenationParser
 	{
 		private Parser valueParser;
 
-		public ConstructorParser () : base('(', ')', ',')
-		{
+		public ConstructorParser (SettingsSyntax syntax) : base(
+			syntax.HeadOpen, syntax.HeadClose, syntax.HeadDelimiter
+		) {
 			this.valueParser = new AnyParser (
 				new NumericParser(), 
 				new FilenameParser(),
 				new StringParser(),
-				new StringConcatenationParser()
+				new StringConcatenationParser(syntax)
 			);
 		}		
 

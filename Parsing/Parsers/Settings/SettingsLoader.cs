@@ -3,8 +3,9 @@ using BorrehSoft.Utensils.Log;
 using System.IO;
 using BorrehSoft.Utensils.Parsing;
 using BorrehSoft.Utensils.Parsing.Parsers;
+using BorrehSoft.Utensils.Collections.Settings;
 
-namespace BorrehSoft.Utensils.Collections.Settings
+namespace BorrehSoft.Utensils.Parsing.Parsers.SettingsParsers
 {
 	public static class SettingsLoader
 	{

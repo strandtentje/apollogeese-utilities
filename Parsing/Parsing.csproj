@@ -49,7 +49,6 @@
     <Compile Include="Parsers\Settings\ConstructorParser.cs" />
     <Compile Include="Parsers\Settings\IncludeParser.cs" />
     <Compile Include="Parsers\Settings\SettingsParser.cs" />
-    <Compile Include="Parsers\Settings\StatementParser.cs" />
     <Compile Include="MapParser.cs" />
     <Compile Include="Parsers\Settings\DiamondFile.cs" />
     <Compile Include="NameValuePiper.cs" />
@@ -60,6 +59,12 @@
     <Compile Include="Parsers\Settings\StringConcatenationParser.cs" />
     <Compile Include="Parsers\Settings\SubstitutionAssignmentParser.cs" />
     <Compile Include="Parsers\Settings\SettingsLoader.cs" />
+    <Compile Include="Parsers\Settings\HeadParser.cs" />
+    <Compile Include="Parsers\Settings\PredefinitionParser.cs" />
+    <Compile Include="Parsers\Parse.cs" />
+    <Compile Include="Parsers\Settings\ExtensionParser.cs" />
+    <Compile Include="Parsers\Settings\BodyParser.cs" />
+    <Compile Include="Parsers\Settings\SettingsSyntax.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

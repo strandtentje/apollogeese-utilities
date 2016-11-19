@@ -2,12 +2,15 @@
 using System.Text;
 using System.Collections.Generic;
 
-namespace BorrehSoft.Utensils.Parsing.Parsers.Settings
+namespace BorrehSoft.Utensils.Parsing.Parsers.SettingsParsers
 {
 	public class StringConcatenationParser : ConcatenationParser
 	{
-		public StringConcatenationParser () : base('/', '/', '|')
-		{
+		public StringConcatenationParser (SettingsSyntax syntax) : base(
+			syntax.StringConcatenationOpen, 
+			syntax.StringConcatenationClose,
+			syntax.StringConcatenationDelimiter
+		) {
 			InnerParser = new AnyStringParser ();
 		}
 

@@ -4,7 +4,7 @@ using BorrehSoft.Utensils.Parsing;
 using System.Collections.Generic;
 using System.IO;
 
-namespace BorrehSoft.Utensils.Collections.Settings
+namespace BorrehSoft.Utensils.Parsing.Parsers.SettingsParsers
 {
 	public class IncludeParser : WhitespaceParser
 	{

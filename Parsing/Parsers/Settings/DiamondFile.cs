@@ -2,7 +2,7 @@
 using BorrehSoft.Utensils.Parsing;
 using BorrehSoft.Utensils.Parsing.Parsers;
 
-namespace BorrehSoft.Utensils
+namespace BorrehSoft.Utensils.Parsing.Parsers.SettingsParsers
 {
 	/// <summary>
 	/// Not some sort of fancy trademark, but actually a pathspec between
@@ -10,13 +10,14 @@ namespace BorrehSoft.Utensils
 	/// </summary>
 	public class DiamondFile : Parser
 	{
-		CharacterParser opener = new CharacterParser('<');
-		CharacterParser closer = new CharacterParser('>');
+		CharacterParser opener, closer;
 		Parser innerParser;
 
 		object dummy;
 
-		public DiamondFile() {
+		public DiamondFile(SettingsSyntax syntax) {
+			this.opener  = new CharacterParser(syntax.AnonymousHeadOpener);
+			this.closer = new CharacterParser(syntax.AnonymousHeadCloser);
 			this.innerParser = new AnyStringParser ();
 		}
 
