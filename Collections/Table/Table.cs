@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 
-namespace BorrehSoft.Utensils
+namespace BorrehSoft.Utilities
 {
 	public class Table : List<Row>
 	{

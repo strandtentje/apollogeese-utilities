@@ -1,7 +1,7 @@
 using System;
 using System.Threading;
 
-namespace BorrehSoft.Utensils.Collections
+namespace BorrehSoft.Utilities.Collections
 {
 	/// <summary>
 	/// Bureaucracy will enqueue objects from one thread without blocking, and
@@ -17,7 +17,7 @@ namespace BorrehSoft.Utensils.Collections
 		public delegate void QueuebackCallback(T item);
 
 		/// <summary>
-		/// Gets a value indicating whether this <see cref="BorrehSoft.Utensils.Collections.Bureaucracy`1"/> is running.
+		/// Gets a value indicating whether this <see cref="BorrehSoft.Utilities.Collections.Bureaucracy`1"/> is running.
 		/// </summary>
 		/// <value>
 		/// <c>true</c> if running; otherwise, <c>false</c>.
@@ -25,7 +25,7 @@ namespace BorrehSoft.Utensils.Collections
 		public bool Running { get; private set; }
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="BorrehSoft.Utensils.Collections.Bureaucracy`1"/> class.
+		/// Initializes a new instance of the <see cref="BorrehSoft.Utilities.Collections.Bureaucracy`1"/> class.
 		/// </summary>
 		/// <param name='taskCallback'>
 		/// Task callback.

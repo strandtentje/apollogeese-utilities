@@ -1,11 +1,11 @@
 using System;
 using System.Text;
 using System.Collections.Generic;
-using BorrehSoft.Utensils;
+using BorrehSoft.Utilities;
 using System.IO;
 using System.Diagnostics;
 
-namespace BorrehSoft.Utensils.Collections.Maps
+namespace BorrehSoft.Utilities.Collections.Maps
 {
 	/// <summary>
 	/// A regular map with added functionality of parsing and composing.

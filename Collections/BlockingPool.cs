@@ -1,12 +1,12 @@
 using System;
-using BorrehSoft.Utensils.Collections.Settings;
-using BorrehSoft.Utensils.Collections.Maps;
+using BorrehSoft.Utilities.Collections.Settings;
+using BorrehSoft.Utilities.Collections.Maps;
 using System.Net.Sockets;
 using System.Threading;
 using System.Net;
 using System.Collections.Generic;
 
-namespace BorrehSoft.Utensils.Collections
+namespace BorrehSoft.Utilities.Collections
 {
 	public class BlockingPool<T> : IDisposable
 	{

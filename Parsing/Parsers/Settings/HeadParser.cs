@@ -1,8 +1,8 @@
 ﻿using System;
-using BorrehSoft.Utensils.Collections.Settings;
+using BorrehSoft.Utilities.Collections.Settings;
 using System.Collections.Generic;
 
-namespace BorrehSoft.Utensils.Parsing.Parsers.SettingsParsers
+namespace BorrehSoft.Utilities.Parsing.Parsers.SettingsParsers
 {
 	public class HeadParser : Parser
 	{

@@ -1,10 +1,10 @@
 using System;
 using System.Data.Linq;
-using BorrehSoft.Utensils.Collections;
+using BorrehSoft.Utilities.Collections;
 using System.Collections.Generic;
 using System.Text;
 
-namespace BorrehSoft.Utensils.Parsing.Parsers
+namespace BorrehSoft.Utilities.Parsing.Parsers
 {
 	public class AnyParser : Parser
 	{

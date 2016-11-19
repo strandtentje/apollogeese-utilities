@@ -4,7 +4,7 @@ using System.Threading;
 using System.Text;
 using System.IO;
 
-namespace BorrehSoft.Utensils.Log
+namespace BorrehSoft.Utilities.Log
 {
 	/// <summary>
 	/// Secretary.
@@ -26,7 +26,7 @@ namespace BorrehSoft.Utensils.Log
 		public bool running = true;
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="BorrehSoft.Utensils.Secretary"/> class.
+		/// Initializes a new instance of the <see cref="BorrehSoft.Utilities.Secretary"/> class.
 		/// </summary>
 		/// <param name="file">Target Logfile.</param>
 		public Secretary(string file)
@@ -78,12 +78,12 @@ namespace BorrehSoft.Utensils.Log
 		}
 
 		/// <summary>
-		/// Releases all resource used by the <see cref="BorrehSoft.Utensils.Secretary"/> object.
+		/// Releases all resource used by the <see cref="BorrehSoft.Utilities.Secretary"/> object.
 		/// </summary>
-		/// <remarks>Call <see cref="Dispose"/> when you are finished using the <see cref="BorrehSoft.Utensils.Secretary"/>. The
-		/// <see cref="Dispose"/> method leaves the <see cref="BorrehSoft.Utensils.Secretary"/> in an unusable state. After
-		/// calling <see cref="Dispose"/>, you must release all references to the <see cref="BorrehSoft.Utensils.Secretary"/>
-		/// so the garbage collector can reclaim the memory that the <see cref="BorrehSoft.Utensils.Secretary"/> was occupying.</remarks>
+		/// <remarks>Call <see cref="Dispose"/> when you are finished using the <see cref="BorrehSoft.Utilities.Secretary"/>. The
+		/// <see cref="Dispose"/> method leaves the <see cref="BorrehSoft.Utilities.Secretary"/> in an unusable state. After
+		/// calling <see cref="Dispose"/>, you must release all references to the <see cref="BorrehSoft.Utilities.Secretary"/>
+		/// so the garbage collector can reclaim the memory that the <see cref="BorrehSoft.Utilities.Secretary"/> was occupying.</remarks>
 		public void Dispose()
 		{
 			running = false;

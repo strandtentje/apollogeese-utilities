@@ -2,7 +2,7 @@ using System;
 using System.Net.Sockets;
 using System.Text;
 
-namespace BorrehSoft.Utensils.Collections.Maps
+namespace BorrehSoft.Utilities.Collections.Maps
 {
 	public class NetworkMap : Map<string>
 	{	

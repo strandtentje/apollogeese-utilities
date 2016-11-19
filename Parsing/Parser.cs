@@ -3,7 +3,7 @@ using System.IO;
 using System.Text;
 using System.Globalization;
 
-namespace BorrehSoft.Utensils.Parsing
+namespace BorrehSoft.Utilities.Parsing
 {
 	/// <summary>
 	/// Parser-prototype. Parser modules working with ParsingSession

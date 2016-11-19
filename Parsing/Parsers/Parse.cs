@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BorrehSoft.Utensils.Parsing.Parsers
+namespace BorrehSoft.Utilities.Parsing.Parsers
 {
 	public static class Parse<T>
 	{

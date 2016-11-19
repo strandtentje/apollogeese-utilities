@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 
-namespace BorrehSoft.Utensils.Collections
+namespace BorrehSoft.Utilities.Collections
 {
 	/// <summary>
 	/// Easy to use map using the this[] property.

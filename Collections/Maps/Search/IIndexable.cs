@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace BorrehSoft.Utensils.Collections.Maps.Search
+namespace BorrehSoft.Utilities.Collections.Maps.Search
 {
 	/// <summary>
 	/// Interface for items which may be indexed into a search map

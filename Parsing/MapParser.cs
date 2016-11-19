@@ -1,11 +1,11 @@
 using System;
 using System.IO;
-using BorrehSoft.Utensils.Collections;
+using BorrehSoft.Utilities.Collections;
 using System.Text;
 using System.Collections.Generic;
 using System.Web;
 
-namespace BorrehSoft.Utensils
+namespace BorrehSoft.Utilities
 {
 	public class MapParser
 	{

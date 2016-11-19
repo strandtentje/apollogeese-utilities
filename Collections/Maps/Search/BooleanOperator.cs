@@ -1,6 +1,6 @@
 using System;
 
-namespace BorrehSoft.Utensils.Collections.Maps.Search
+namespace BorrehSoft.Utilities.Collections.Maps.Search
 {
 	public enum BooleanOperator
 	{

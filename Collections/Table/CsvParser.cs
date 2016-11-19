@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace BorrehSoft.Utensils
+namespace BorrehSoft.Utilities
 {
 	public static class CsvParser
 	{

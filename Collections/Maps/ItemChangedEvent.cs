@@ -1,6 +1,6 @@
 using System;
 
-namespace BorrehSoft.Utensils.Collections.Maps
+namespace BorrehSoft.Utilities.Collections.Maps
 {
 	/// <summary>
 	/// Item changed event handler.
@@ -31,7 +31,7 @@ namespace BorrehSoft.Utensils.Collections.Maps
 		public T NewValue { get; private set; }
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="BorrehSoft.Utensils.ItemChangedEventArgs`1"/> class.
+		/// Initializes a new instance of the <see cref="BorrehSoft.Utilities.ItemChangedEventArgs`1"/> class.
 		/// </summary>
 		/// <param name="PreviousValue">Previous value.</param>
 		/// <param name="NewValue">New value.</param>

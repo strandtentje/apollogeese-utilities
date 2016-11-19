@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using BorrehSoft.Utensils.Log;
+using BorrehSoft.Utilities.Log;
 
-namespace BorrehSoft.Utensils.Collections.Maps
+namespace BorrehSoft.Utilities.Collections.Maps
 {
 	/// <summary>
 	/// Plugin collection.

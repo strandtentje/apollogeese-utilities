@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 using System.Web;
 using System.Collections.Generic;
 
-namespace BorrehSoft.Utensils.Collections
+namespace BorrehSoft.Utilities.Collections
 {
 	/// <summary>
 	/// List of string chunks, useful methods inside!
@@ -14,7 +14,7 @@ namespace BorrehSoft.Utensils.Collections
 		public delegate string DecoderMethod (string inString);		
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="BorrehSoft.Utensils.StringList"/> class.
+		/// Initializes a new instance of the <see cref="BorrehSoft.Utilities.StringList"/> class.
 		/// </summary>
 		public StringList() {	}
 
@@ -24,7 +24,7 @@ namespace BorrehSoft.Utensils.Collections
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="BorrehSoft.Utensils.StringList"/> class,
+		/// Initializes a new instance of the <see cref="BorrehSoft.Utilities.StringList"/> class,
 		/// from a string concatenated with a certain sepeartor
 		/// </summary>
 		/// <param name="data">Data.</param>

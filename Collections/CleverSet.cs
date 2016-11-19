@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using BorrehSoft.Utensils.Collections.Maps.Search;
+using BorrehSoft.Utilities.Collections.Maps.Search;
 
-namespace BorrehSoft.Utensils.Collections
+namespace BorrehSoft.Utilities.Collections
 {
 	/// <summary>
 	/// Hash set.

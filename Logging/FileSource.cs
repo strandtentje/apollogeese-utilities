@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 
-namespace BorrehSoft.Utensils.IO
+namespace BorrehSoft.Utilities.IO
 {
 	public class FileSource
 	{

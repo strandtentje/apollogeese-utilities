@@ -6,7 +6,7 @@ using System.Threading;
 using System.Collections.Specialized;
 using System.Diagnostics;
 
-namespace BorrehSoft.Utensils.Log.Profiling
+namespace BorrehSoft.Utilities.Log.Profiling
 {
 	public class ThreadAwareProfiler
 	{

@@ -1,11 +1,11 @@
 using System;
 using System.IO;
-using BorrehSoft.Utensils.Parsing.Parsers;
+using BorrehSoft.Utilities.Parsing.Parsers;
 using System.Collections.Generic;
-using BorrehSoft.Utensils.Collections;
-using BorrehSoft.Utensils.Log.Profiling;
+using BorrehSoft.Utilities.Collections;
+using BorrehSoft.Utilities.Log.Profiling;
 
-namespace BorrehSoft.Utensils.Parsing
+namespace BorrehSoft.Utilities.Parsing
 {
 	/// <summary>
 	/// Parsing session for one file. This component maintains the 
@@ -111,8 +111,6 @@ namespace BorrehSoft.Utensils.Parsing
 		/// <value>The current column.</value>
 		public int CurrentColumn { get; set; }
 
-
-
 		public ParsingSession(string data, Parser whitespaceParser, bool profilingEnabled = false)
 		{
 			this.whitespaceParser = whitespaceParser;
@@ -129,7 +127,7 @@ namespace BorrehSoft.Utensils.Parsing
 		/// Reads all contents from a file for usage in a ParsingSession
 		/// </summary>
 		/// <returns>
-		/// The immediately usable <see cref="BorrehSoft.Utensils.Parsing.ParsingSession"/>
+		/// The immediately usable <see cref="BorrehSoft.Utilities.Parsing.ParsingSession"/>
 		/// </returns>
 		/// <param name='file'>
 		/// Filename to read serial data from.

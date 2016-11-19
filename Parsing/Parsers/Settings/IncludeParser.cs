@@ -1,10 +1,10 @@
 using System;
-using BorrehSoft.Utensils.Parsing.Parsers;
-using BorrehSoft.Utensils.Parsing;
+using BorrehSoft.Utilities.Parsing.Parsers;
+using BorrehSoft.Utilities.Parsing;
 using System.Collections.Generic;
 using System.IO;
 
-namespace BorrehSoft.Utensils.Parsing.Parsers.SettingsParsers
+namespace BorrehSoft.Utilities.Parsing.Parsers.SettingsParsers
 {
 	public class IncludeParser : WhitespaceParser
 	{

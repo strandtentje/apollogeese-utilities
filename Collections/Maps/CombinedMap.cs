@@ -1,8 +1,8 @@
 using System;
-using BorrehSoft.Utensils.Collections;
+using BorrehSoft.Utilities.Collections;
 using System.Collections.Generic;
 
-namespace BorrehSoft.Utensils.Collections.Maps
+namespace BorrehSoft.Utilities.Collections.Maps
 {
 	/// <summary>
 	/// Map that is a combination of multiple maps. Instantiates quickly, seek times are
@@ -14,7 +14,7 @@ namespace BorrehSoft.Utensils.Collections.Maps
 		Dictionary<string, byte> deletions = new Dictionary<string, byte>();
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="BorrehSoft.Utensils.Collections.Maps.CombinedMap`1"/> class.
+		/// Initializes a new instance of the <see cref="BorrehSoft.Utilities.Collections.Maps.CombinedMap`1"/> class.
 		/// </summary>
 		/// <param name='maps'>
 		/// Underling Maps. Will be evaluated in specified order.

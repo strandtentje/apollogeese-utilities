@@ -1,9 +1,9 @@
 using System;
-using BorrehSoft.Utensils.Parsing;
-using BorrehSoft.Utensils.Parsing.Parsers;
+using BorrehSoft.Utilities.Parsing;
+using BorrehSoft.Utilities.Parsing.Parsers;
 using System.Collections.Generic;
 
-namespace BorrehSoft.Utensils.Parsing.Parsers.SettingsParsers
+namespace BorrehSoft.Utilities.Parsing.Parsers.SettingsParsers
 {
 	public class ConstructorParser : ConcatenationParser
 	{

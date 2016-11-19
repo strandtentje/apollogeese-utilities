@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel;
 
-namespace BorrehSoft.Utensils.Collections.Maps
+namespace BorrehSoft.Utilities.Collections.Maps
 {
 	/// <summary>
 	/// A regular map, but it raises an event when an item is changed.

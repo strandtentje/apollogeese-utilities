@@ -1,14 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using BorrehSoft.Utensils.Log;
-using BorrehSoft.Utensils.Collections.Maps;
+using BorrehSoft.Utilities.Log;
+using BorrehSoft.Utilities.Collections.Maps;
 
-namespace BorrehSoft.Utensils.Collections.Settings
+namespace BorrehSoft.Utilities.Collections.Settings
 {
 	/// <summary>
 	/// Settings data structure; stores objects by key. May be
-	/// parsed from a file using the <see cref="BorrehSoft.Utensils.Settings.SettingsParser"/>
+	/// parsed from a file using the <see cref="BorrehSoft.Utilities.Settings.SettingsParser"/>
 	/// </summary>
 	public class Settings : Map<object>
 	{

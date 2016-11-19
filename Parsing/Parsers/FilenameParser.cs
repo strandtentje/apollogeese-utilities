@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 
-namespace BorrehSoft.Utensils.Parsing.Parsers
+namespace BorrehSoft.Utilities.Parsing.Parsers
 {
 	public class FilenameParser : StringParser
 	{

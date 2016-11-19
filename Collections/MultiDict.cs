@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace BorrehSoft.Utensils
+namespace BorrehSoft.Utilities
 {
 	/// <summary>
 	/// Dict with multiple definitions for one key.

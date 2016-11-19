@@ -1,14 +1,14 @@
 using System;
-using BorrehSoft.Utensils.Parsing;
-using BorrehSoft.Utensils.Parsing.Parsers;
+using BorrehSoft.Utilities.Parsing;
+using BorrehSoft.Utilities.Parsing.Parsers;
 using System.Collections.Generic;
 using System.Globalization;
-using BorrehSoft.Utensils.Log;
+using BorrehSoft.Utilities.Log;
 using System.IO;
-using BorrehSoft.Utensils.Collections.Maps;
-using BorrehSoft.Utensils.Collections.Settings;
+using BorrehSoft.Utilities.Collections.Maps;
+using BorrehSoft.Utilities.Collections.Settings;
 
-namespace BorrehSoft.Utensils.Parsing.Parsers.SettingsParsers
+namespace BorrehSoft.Utilities.Parsing.Parsers.SettingsParsers
 {
 	/// <summary>
 	/// Settings parser.

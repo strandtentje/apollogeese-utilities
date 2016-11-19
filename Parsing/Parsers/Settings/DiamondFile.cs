@@ -1,8 +1,8 @@
 ﻿using System;
-using BorrehSoft.Utensils.Parsing;
-using BorrehSoft.Utensils.Parsing.Parsers;
+using BorrehSoft.Utilities.Parsing;
+using BorrehSoft.Utilities.Parsing.Parsers;
 
-namespace BorrehSoft.Utensils.Parsing.Parsers.SettingsParsers
+namespace BorrehSoft.Utilities.Parsing.Parsers.SettingsParsers
 {
 	/// <summary>
 	/// Not some sort of fancy trademark, but actually a pathspec between

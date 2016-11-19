@@ -1,6 +1,6 @@
 using System;
 
-namespace BorrehSoft.Utensils.Log.Profiling
+namespace BorrehSoft.Utilities.Log.Profiling
 {	
 	public class Entry : IComparable {
 		public bool CheckedIn;

@@ -2,7 +2,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
 
-namespace BorrehSoft.Utensils.Collections.Maps.Search
+namespace BorrehSoft.Utilities.Collections.Maps.Search
 {
 	/// <summary>
 	/// Search map.

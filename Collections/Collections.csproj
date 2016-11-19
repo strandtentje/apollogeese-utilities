@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{81DFA659-4906-4653-AC13-E0886D28B9A0}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Collections</RootNamespace>
+    <RootNamespace>BorrehSoft.Utilities.Collections</RootNamespace>
     <AssemblyName>Collections</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

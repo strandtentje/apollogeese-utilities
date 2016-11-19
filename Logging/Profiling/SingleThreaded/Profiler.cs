@@ -2,7 +2,7 @@ using System;
 using System.Diagnostics;
 using System.Collections.Generic;
 
-namespace BorrehSoft.Utensils.Log.Profiling
+namespace BorrehSoft.Utilities.Log.Profiling
 {
 	public class Profiler
 	{

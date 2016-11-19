@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BorrehSoft.Utensils.Parsing.Parsers.SettingsParsers
+namespace BorrehSoft.Utilities.Parsing.Parsers.SettingsParsers
 {
 	public class SettingsSyntax
 	{

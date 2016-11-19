@@ -1,8 +1,8 @@
 using System;
 using System.IO;
-using BorrehSoft.Utensils.Parsing.Parsers;
+using BorrehSoft.Utilities.Parsing.Parsers;
 
-namespace BorrehSoft.Utensils.Parsing
+namespace BorrehSoft.Utilities.Parsing
 {
 	/// <summary>
 	/// Parsing exception. This occurs when no suitable parser was found
