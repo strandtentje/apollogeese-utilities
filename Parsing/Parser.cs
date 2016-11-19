@@ -40,7 +40,7 @@ namespace BorrehSoft.Utilities.Parsing
 			if (session.Offset >= session.Data.Length)
 				return -1;
 
-			if (this != session.whitespaceParser)
+			if ((session.whitespaceParser != null) && (this != session.whitespaceParser))
 				session.whitespaceParser.Run (session, out dummy);
 
 			if (session.ProfilingEnabled)

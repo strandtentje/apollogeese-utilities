@@ -5,6 +5,11 @@ namespace BorrehSoft.Utilities.Parsing.Parsers
 {
 	public static class Parse<T>
 	{
+		public static T Using(Parser parser, string data) {
+			object candidate;
+			return Using (parser, new ParsingSession (data));
+		}
+
 		public static T Using(Parser parser, ParsingSession session) {
 			object candidate;
 			if (parser.Run (session, out candidate) > 0) {

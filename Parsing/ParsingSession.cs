@@ -111,7 +111,7 @@ namespace BorrehSoft.Utilities.Parsing
 		/// <value>The current column.</value>
 		public int CurrentColumn { get; set; }
 
-		public ParsingSession(string data, Parser whitespaceParser, bool profilingEnabled = false)
+		public ParsingSession(string data, Parser whitespaceParser = null, bool profilingEnabled = false)
 		{
 			this.whitespaceParser = whitespaceParser;
 			this.References = new Map<object>();
