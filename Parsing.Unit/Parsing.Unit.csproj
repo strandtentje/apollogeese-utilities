@@ -41,6 +41,7 @@
     <Compile Include="NumericParserTest.cs" />
     <Compile Include="SessionTest.cs" />
     <Compile Include="IdentifierParserTest.cs" />
+    <Compile Include="FilenameParserTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
