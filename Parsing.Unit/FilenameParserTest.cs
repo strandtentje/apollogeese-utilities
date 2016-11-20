@@ -28,14 +28,14 @@ namespace BorrehSoft.Utilities.Parsing.Unit
 		public void TestIgnoresString()
 		{
 			var session = GivenSessionWithText ("\"tosti.txt\"");
-			Assert.AreEqual ("", Parse<string>.Using (SUT, session));
+			Assert.AreEqual (null, Parse<string>.Using (SUT, session));
 		}
 
 		[Test()]
 		public void TestIgnoresFIdentifier()
 		{
 			var session = GivenSessionWithText ("fKaasTosti");
-			Assert.AreEqual ("", Parse<string>.Using (SUT, session));
+			Assert.AreEqual (null, Parse<string>.Using (SUT, session));
 		}
 	}
 }
