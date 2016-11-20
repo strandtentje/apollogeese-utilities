@@ -56,9 +56,7 @@ namespace BorrehSoft.Utilities.Parsing.Unit
 		[ExpectedException(typeof(ParsingException))]
 		public void TestPrefixDelimiter()
 		{
-			var result = Parse<List<object>>.Using (SUT, "(,kaas,tosti)");
-			Assert.AreEqual ("kaas", result[0]);
-			Assert.AreEqual ("tosti", result[1]);
+			Parse<List<object>>.Using (SUT, "(,kaas,tosti)");
 		}
 
 		[Test()]

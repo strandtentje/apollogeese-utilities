@@ -43,6 +43,9 @@
     <Compile Include="IdentifierParserTest.cs" />
     <Compile Include="FilenameParserTest.cs" />
     <Compile Include="ConcatenationParserTest.cs" />
+    <Compile Include="CharacterParserTest.cs" />
+    <Compile Include="BoolParserTest.cs" />
+    <Compile Include="AnyParserTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

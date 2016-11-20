@@ -27,6 +27,18 @@ namespace BorrehSoft.Utilities.Parsing.Unit
 		{
 			Assert.AreNotEqual ("cake", Parse<string>.Using (SUT, "ocake"));
 		}
+
+		[Test()]
+		public void TestHandover()
+		{
+			var session = new ParsingSession ("cherry cake", new WhitespaceParser ());
+			object result;
+			Assert.Less (SUT.Run (session, out result), 0);
+			Assert.Greater ((new SequenceParser ("cherry")).Run (session, out result), 0);
+			Assert.AreEqual ("cherry", result);
+			Assert.Greater (SUT.Run (session, out result), 0);
+			Assert.AreEqual ("cake", result);
+		}
 	}
 }
 

@@ -21,8 +21,11 @@ namespace BorrehSoft.Utilities.Parsing.Parsers
 		{
 			result = "";
 
+			var bookmark = session.Offset;
+
 			foreach (Parser parserInSequence in parserSequence) {
 				if (parserInSequence.Run (session) < 0) {
+					session.Offset = bookmark;
 					return -1;
 				}
 			}

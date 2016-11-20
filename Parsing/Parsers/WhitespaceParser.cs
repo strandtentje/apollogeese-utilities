@@ -23,7 +23,7 @@ namespace BorrehSoft.Utilities.Parsing.Parsers
 		/// Amount of newlines
 		/// </returns>
 		/// <param name='data'>
-		/// Data to parse
+		/// Data to parse,
 		/// </param>
 		/// <param name='offset'>
 		/// Offset in data
