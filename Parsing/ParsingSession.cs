@@ -8,9 +8,7 @@ using BorrehSoft.Utilities.Log.Profiling;
 namespace BorrehSoft.Utilities.Parsing
 {
 	/// <summary>
-	/// Parsing session for one file. This component maintains the 
-	/// serial data that will be parsed, the cursus position and current
-	/// Line.
+	/// Parsing Session State
 	/// </summary>
 	public class ParsingSession
 	{
@@ -111,10 +109,10 @@ namespace BorrehSoft.Utilities.Parsing
 		/// <value>The current column.</value>
 		public int CurrentColumn { get; set; }
 
-		public ParsingSession(string data, Parser whitespaceParser = null, bool profilingEnabled = false)
+		public ParsingSession(string data, Parser whitespaceParser = null, bool profilingEnabled = false, Map<object> references = null)
 		{
 			this.whitespaceParser = whitespaceParser;
-			this.References = new Map<object>();
+			this.References = references ?? new Map<object>();
 			this.Data = data;
 			this.Offset = 0;
 			this.CurrentLine = 0;

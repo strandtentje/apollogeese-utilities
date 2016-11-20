@@ -51,13 +51,21 @@ namespace BorrehSoft.Utilities.Parsing.Parsers
 				} else {
 					session.Offset = bookmark;
 					if (succescode < 0)
-						throw new Exception ("Invalid Reference to " + identifier);
+						throw new InvalidReferenceException (identifier);
 					else 
 						succescode = -1;
 				}
 			}
 
 			return succescode;
+		}
+
+		public class InvalidReferenceException : Exception
+		{
+			public InvalidReferenceException (string identifier) : base(string.Format("Invalid Reference to {0}", identifier))
+			{
+				
+			}
 		}
 	}
 }

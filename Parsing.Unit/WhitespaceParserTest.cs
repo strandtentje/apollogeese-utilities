@@ -9,7 +9,7 @@ namespace BorrehSoft.Utilities.Parsing.Unit
 	{
 		WhitespaceParser SUT;
 
-		[Test()]
+		[SetUp()]
 		public void SetUp()
 		{
 			this.SUT = new WhitespaceParser ();

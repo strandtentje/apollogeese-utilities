@@ -36,6 +36,11 @@
   <ItemGroup>
     <Compile Include="WhitespaceParserTest.cs" />
     <Compile Include="StringParserTest.cs" />
+    <Compile Include="SequenceParserTest.cs" />
+    <Compile Include="ReferenceParserTest.cs" />
+    <Compile Include="NumericParserTest.cs" />
+    <Compile Include="SessionTest.cs" />
+    <Compile Include="IdentifierParserTest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -45,6 +50,10 @@
     <ProjectReference Include="..\Parsing\Parsing.csproj">
       <Project>{274A8AFD-1DE7-47D8-98CD-925982D59DE0}</Project>
       <Name>Parsing</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Collections\Collections.csproj">
+      <Project>{81DFA659-4906-4653-AC13-E0886D28B9A0}</Project>
+      <Name>Collections</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

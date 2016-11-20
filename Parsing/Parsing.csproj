@@ -36,7 +36,6 @@
     <Compile Include="Parsers\CharacterParser.cs" />
     <Compile Include="Parsers\ConcatenationParser.cs" />
     <Compile Include="Parsers\FilenameParser.cs" />
-    <Compile Include="Parsers\GreedyParser.cs" />
     <Compile Include="Parsers\IdentifierParser.cs" />
     <Compile Include="Parsers\ReferenceParser.cs" />
     <Compile Include="Parsers\SequenceParser.cs" />
