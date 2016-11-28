@@ -116,14 +116,14 @@ namespace BorrehSoft.Utilities.Collections.Settings
 		}
 
 		public List<string> GetStringList(string id, params string[] defaults) {
-			if (base.Has (id) && (base[id] is IEnumerable<object>)) {
-				IEnumerable<object> list = (IEnumerable<object>)base [id];
-				List<string> stringList = new List<string> ();
+			IEnumerable<object> baseEnumerable = base [id] as IEnumerable<object>;
+			if (baseEnumerable != null) {
+				List<object> list = new List<object> (baseEnumerable);
 
-				foreach (object item in list) 
-					stringList.Add ((string)item);
-
-				return stringList;
+				list.RemoveAll (item => item == null);
+				return list.ConvertAll<string> (delegate(object input) {
+					return input.ToString();
+				});
 			} else {
 				return new List<string> (defaults);
 			}
