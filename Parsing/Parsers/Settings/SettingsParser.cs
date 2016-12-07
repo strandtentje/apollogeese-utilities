@@ -40,9 +40,9 @@ namespace BorrehSoft.Utilities.Parsing.Parsers.SettingsParsers
 
 			this.HeadParser = new HeadParser (ExpressionParser, this.Syntax);
 			this.PredefParser = new PredefinitionParser();
-			this.ChainParser = new ExtensionParser (this.Syntax.Chainer, this);
+			this.ChainParser = new ExtensionParser (this.Syntax.Chainer, this.Syntax.ChainSubstitution, this);
 			this.BodyParser = new BodyParser (ExpressionParser, this.Syntax);
-			this.SuccessorParser = new ExtensionParser (this.Syntax.Successor, this);
+			this.SuccessorParser = new ExtensionParser (this.Syntax.Successor, this.Syntax.SuccessorSubstitution, this);
 		}
 
 		internal override int ParseMethod (ParsingSession session, out object result)
