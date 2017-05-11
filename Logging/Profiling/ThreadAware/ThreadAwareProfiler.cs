@@ -8,7 +8,7 @@ using System.Diagnostics;
 
 namespace BorrehSoft.Utilities.Log.Profiling
 {
-	public class ThreadAwareProfiler
+	public class ThreadAwareProfiler : ICallbackProfiler
 	{
 		public ThreadAwareProfiler() {
 			this.CorrectForNesting = true;
@@ -18,6 +18,8 @@ namespace BorrehSoft.Utilities.Log.Profiling
 
 		long measurementsMade = 0;
 
+		public bool CorrectForNesting { get; set; }
+
 		public long TotalTicksSpent { get { return this.ticksSpent; } }
 
 		public long MeasurementCount { get { return this.measurementsMade; } }
@@ -25,8 +27,6 @@ namespace BorrehSoft.Utilities.Log.Profiling
 		public long TicksPerMeasurement { get { return this.TotalTicksSpent / Math.Max(1, this.MeasurementCount); } }
 
 		private static ListDictionary threadStopwatches = new ListDictionary ();
-
-		public bool CorrectForNesting { get; set; }
 
 		public void Reset ()
 		{

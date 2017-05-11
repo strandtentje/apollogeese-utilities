@@ -34,6 +34,8 @@
     <Compile Include="Profiling\SingleThreaded\Profiler.cs" />
     <Compile Include="Profiling\SingleThreaded\Report.cs" />
     <Compile Include="Profiling\ThreadAware\ThreadAwareProfiler.cs" />
+    <Compile Include="Profiling\ThreadAware\ICallbackProfiler.cs" />
+    <Compile Include="Profiling\ThreadAware\DummyProfiler.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
