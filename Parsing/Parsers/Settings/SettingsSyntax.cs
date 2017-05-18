@@ -42,6 +42,11 @@ namespace BorrehSoft.Utilities.Parsing.Parsers.SettingsParsers
 		public virtual char Successor { get { return '&'; } }
 		public virtual string ChainSubstitution { get { return "_with_branch"; } }
 		public virtual string SuccessorSubstitution { get { return "_successor_branch"; } }
+
+		public virtual char TernaryPositiveToken { get { return '?'; } }
+		public virtual char TernaryNegativeToken { get { return ':'; } }
+		public virtual string TernaryPositiveSubstitution { get { return "successful_branch"; } }
+		public virtual string TernaryNegativeSubstitution { get { return "failure_branch"; } }
 	}
 }
 

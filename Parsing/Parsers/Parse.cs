@@ -10,6 +10,15 @@ namespace BorrehSoft.Utilities.Parsing.Parsers
 			return Using (parser, new ParsingSession (data));
 		}
 
+		public static Tuple<T, T> CoupleUsing(Parser first, Parser then, ParsingSession session) {
+			object firstResult, nextResult;
+			if ((first.Run(session, out firstResult) > 0) && (then.Run(session, out nextResult) > 0)) {
+				return new Tuple<T, T>((T)firstResult, (T)nextResult);
+			} else {
+				return default(Tuple<T, T>);
+			}
+		}
+
 		public static T Using(Parser parser, ParsingSession session) {
 			object candidate;
 			if (parser.Run (session, out candidate) > 0) {

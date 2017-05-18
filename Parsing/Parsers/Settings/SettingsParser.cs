@@ -20,6 +20,7 @@ namespace BorrehSoft.Utilities.Parsing.Parsers.SettingsParsers
 		PredefinitionParser PredefParser;
 		ExtensionParser ChainParser;
 		BodyParser BodyParser;
+		ExtensionParser TernaryPositiveParser, TernaryNegativeParser;
 		ExtensionParser SuccessorParser;
 
 		public SettingsParser(SettingsSyntax proposedSyntax = null)
@@ -42,6 +43,10 @@ namespace BorrehSoft.Utilities.Parsing.Parsers.SettingsParsers
 			this.PredefParser = new PredefinitionParser();
 			this.ChainParser = new ExtensionParser (this.Syntax.Chainer, this.Syntax.ChainSubstitution, this);
 			this.BodyParser = new BodyParser (ExpressionParser, this.Syntax);
+			this.TernaryPositiveParser = new ExtensionParser(
+				this.Syntax.TernaryPositiveToken, this.Syntax.TernaryPositiveSubstitution, this);
+			this.TernaryNegativeParser = new ExtensionParser(
+				this.Syntax.TernaryNegativeToken, this.Syntax.TernaryNegativeSubstitution, this);
 			this.SuccessorParser = new ExtensionParser (this.Syntax.Successor, this.Syntax.SuccessorSubstitution, this);
 		}
 
@@ -51,10 +56,15 @@ namespace BorrehSoft.Utilities.Parsing.Parsers.SettingsParsers
 			var baseDefinitions = Parse<List<Settings>>.Using (PredefParser, session);
 			var chainedDefinition = Parse<Settings>.Using (ChainParser, session);
 			var bodyDefinition = Parse<Settings>.Using (BodyParser, session);
+			var ternaryDefinition = Parse<Settings>.CoupleUsing(TernaryPositiveParser, TernaryNegativeParser, session);
 			var successorDefinition = Parse<Settings>.Using (SuccessorParser, session);
 
 			if (chainedDefinition != null) {
 				headDefinition [Syntax.ChainSubstitution] = chainedDefinition;
+			}
+			if (ternaryDefinition != null) {
+				headDefinition[Syntax.TernaryPositiveSubstitution] = ternaryDefinition.Item1;
+				headDefinition[Syntax.TernaryNegativeSubstitution] = ternaryDefinition.Item2;
 			}
 			if (successorDefinition != null) {
 				headDefinition [Syntax.SuccessorSubstitution] = successorDefinition;
