@@ -34,6 +34,8 @@ namespace BorrehSoft.Utilities.Parsing.Parsers
 					escapedText = quotedText.Remove(quotedText.Length - 1, 1).Remove(0, 1);
 					text = Regex.Unescape(escapedText);
 
+					session.CurrentLine += Math.Max(text.Split('\n').Length - 1, 0);
+
 					session.Offset += quotedText.Length;
 
 					result = text;
