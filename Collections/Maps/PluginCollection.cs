@@ -15,9 +15,9 @@ namespace BorrehSoft.Utilities.Collections.Maps
 		/// </summary>
 		/// <returns>The constructed type.</returns>
 		/// <param name="name">Name.</param>
-		public T GetConstructed(string name)
+		public T GetConstructed(string name, Guid guid)
 		{
-			return (T)Activator.CreateInstance (this[name]);
+			return (T)Activator.CreateInstance (this[name], guid);
 		}
 
 		/// <summary>
