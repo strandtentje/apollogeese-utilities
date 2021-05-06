@@ -10,15 +10,14 @@ namespace BorrehSoft.Utilities.Parsing.Parsers.SettingsParsers
 	/// </summary>
 	public class DiamondFile : Parser
 	{
-		CharacterParser opener, closer;
-		Parser innerParser;
+		Parser opener, closer, innerParser;
 
 		object dummy;
 
-		public DiamondFile(SettingsSyntax syntax) {
-			this.opener  = new CharacterParser(syntax.AnonymousHeadOpener);
-			this.closer = new CharacterParser(syntax.AnonymousHeadCloser);
-			this.innerParser = new AnyStringParser ();
+		public DiamondFile(SettingsSyntax syntax, Parser o = null, Parser c = null, Parser i = null) {
+			this.opener = o ?? new CharacterParser(syntax.AnonymousHeadOpener);
+			this.closer = c ?? new CharacterParser(syntax.AnonymousHeadCloser);
+			this.innerParser = i ?? new AnyStringParser ();
 		}
 
 		internal override int ParseMethod (ParsingSession session, out object result)
@@ -38,5 +37,20 @@ namespace BorrehSoft.Utilities.Parsing.Parsers.SettingsParsers
 			return filenameLength;
 		}
 	}
+
+    /// <summary>
+    /// Used for concisely specifying resource selection on services using a [name] block
+    /// after the (settings="settings") bit.
+    /// </summary>
+    public class SelectorString : DiamondFile
+    {
+        public SelectorString(SettingsSyntax s) : base(s, 
+            new CharacterParser(s.ArrayOpen), 
+            new CharacterParser(s.ArrayClose),
+            new IdentifierParser())
+        {
+
+        }
+    }
 }
 

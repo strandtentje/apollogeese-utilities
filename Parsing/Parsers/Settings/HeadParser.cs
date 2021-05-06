@@ -1,6 +1,7 @@
 ﻿using System;
 using BorrehSoft.Utilities.Collections.Settings;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BorrehSoft.Utilities.Parsing.Parsers.SettingsParsers
 {
@@ -8,6 +9,7 @@ namespace BorrehSoft.Utilities.Parsing.Parsers.SettingsParsers
 	{
 		SettingsSyntax Syntax;
 		DiamondFile DiamondParser;
+        SelectorString SelectorParser;
 		IdentifierParser NameParser;
 		ConcatenationParser ConfigurationParser;
 
@@ -16,6 +18,7 @@ namespace BorrehSoft.Utilities.Parsing.Parsers.SettingsParsers
 			this.Syntax = syntax;
 			this.DiamondParser = new DiamondFile (syntax);
 			this.NameParser = new IdentifierParser ();
+            this.SelectorParser = new SelectorString(syntax);
 
 			ConfigurationParser = new ConstructorParser (syntax) {
 				InnerParser = new SubstitutionAssignmentParser (
@@ -38,17 +41,28 @@ namespace BorrehSoft.Utilities.Parsing.Parsers.SettingsParsers
 			if (Parse<string>.TryUsing (NameParser, session, out headName)) {
 				definition [Syntax.HeadIdentifier] = headName;
 			} else if (Parse<object>.TryUsing (DiamondParser, session, out headValue)) {
-				definition [Syntax.HeadIdentifier] = this.Syntax.AnonymousHeadName;
+                var fn = headValue.ToString();
+                if (fn.EndsWith(".sql", StringComparison.InvariantCultureIgnoreCase))
+                    definition[Syntax.HeadIdentifier] = this.Syntax.ExtAnonHeadName[".sql"];
+                else if (fn.EndsWith(".html", StringComparison.InvariantCultureIgnoreCase))
+                    definition[Syntax.HeadIdentifier] = this.Syntax.ExtAnonHeadName[".html"];
+                else
+                    definition[Syntax.HeadIdentifier] = this.Syntax.DefaultAnonHeadName;
+
 			}
 
-
-			Settings configuration = null;
+            Settings configuration = null;
 			List<Tuple<string, object>> candidate;
 			if (Parse<Tuple<string, object>>.TryListUsing (ConfigurationParser, session, out candidate)) {
 				configuration = Settings.FromTuples (candidate);
 			}
 
-			if (configuration == null) {
+            if (Parse<string>.TryUsing(SelectorParser, session, out string selector))
+            {
+                configuration[Syntax.SelectSetting] = selector;
+            }
+
+            if (configuration == null) {
 				if (headName != null) {
 					throw new ParsingException (session, ConfigurationParser, session.Ahead, session.Trail);
 				} else if (headValue != null) {

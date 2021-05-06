@@ -1,10 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace BorrehSoft.Utilities.Parsing.Parsers.SettingsParsers
 {
 	public class SettingsSyntax
 	{
-		public virtual char BodyOpen { get { return '{'; } }
+        public Dictionary<string, string> ExtAnonHeadName = new Dictionary<string, string>
+        {
+            { ".sql", "DataReader" },
+            { ".html", "Template" }
+        };
+
+
+        public virtual string SelectSetting { get { return "_select"; } }
+
+        public virtual char BodyOpen { get { return '{'; } }
 		public virtual char BodyClose { get { return '}'; } }
 		public virtual char BodyDelimiter { get { return ';'; } }
 
@@ -24,7 +34,7 @@ namespace BorrehSoft.Utilities.Parsing.Parsers.SettingsParsers
 
 		public virtual char AnonymousHeadOpener { get { return '<'; } }
 		public virtual char AnonymousHeadCloser { get { return '>'; } }
-		public virtual string AnonymousHeadName { get { return "Module"; } }
+		public virtual string DefaultAnonHeadName { get { return "Module"; } }
 
 		public virtual string HeadShorthand { get { return "<-"; } }
 		public virtual string HeadSubstitution { get { return "_override"; } }
