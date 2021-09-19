@@ -58,6 +58,7 @@
     <Compile Include="DuplicateKeyComparer.cs" />
     <Compile Include="ReverseDuplicateKeyComparer.cs" />
     <Compile Include="Assign.cs" />
+    <Compile Include="HashTableExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
