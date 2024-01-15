@@ -23,14 +23,20 @@ namespace BorrehSoft.Utilities.Parsing.Parsers
                     prefix = session.WorkingDirectory;
                 else if (c == 'q')
                     prefix = string.Format("{0}{1}{2}",
-                        session.WorkingDirectory, 
-                        Path.DirectorySeparatorChar, 
+                        session.WorkingDirectory,
+                        Path.DirectorySeparatorChar,
                         "queries");
                 else if (c == 't')
                     prefix = string.Format("{0}{1}{2}",
                         session.WorkingDirectory,
                         Path.DirectorySeparatorChar,
                         "templates");
+                else if (c == '1')
+                    prefix = Directory.GetParent(session.WorkingDirectory).FullName;
+                else if (c == '2')
+                    prefix = Directory.GetParent(session.WorkingDirectory).Parent.FullName;
+                else if (c == '3')
+                    prefix = Directory.GetParent(session.WorkingDirectory).Parent.Parent.FullName;
                 else
                     return -1;
 
